@@ -1,0 +1,15 @@
+<<<TITLE
+Built-in Libraries
+TITLE>>>
+
+<<<SHORT
+Libraries
+SHORT>>>
+
+<<<CONTENT
+Located in the <code>/lib</code> subdirectory, the built-in
+libraries contain a basic set of functionalities. Split based
+on usage and utility, the prepackaged sublibraries are:
+
+<a href="core/index.htm">core</a> and <a href="sql/index.htm">sql</a>.
+CONTENT>>>

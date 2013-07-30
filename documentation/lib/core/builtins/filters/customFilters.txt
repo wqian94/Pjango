@@ -1,0 +1,77 @@
+Custom Filters
+==============
+
+Although the built-in filters are sufficient for most puposes,
+you may find the need to develop your own filters. In fact, you
+are encouraged to implement additional filters to better suit
+your website.
+
+Creating a custom filter is very simple. Once the core
+sublibrary has been included in your PHP script (done at the
+top of "settings.php"), you can create a custom filter by
+extending the AbstractFilter class (documentation provided here)
+and defining the render() function.
+
+The render() function takes in three arguments: $args, $var,
+and &$vars.
+
+$args is an array of the arguments passed into your filter.
+
+$var is the value for your filter to manipulate; this could be
+anything from a simple string or number to an array or an
+instance of a class.
+
+$vars is the associative array of the current system variables
+at runtime. This is especially important for for-loops, as they
+update the current system variables with each iteration. Since
+it is passed by reference, be wary of mutating this variable.
+
+Additionally, your render() function can also return any value,
+including arrays and objects, though be advised that if no
+other filters are used to further process them, they will be
+converted to strings and printed as strings.
+
+Finally, you will need to register your filter with the __SITE
+class by using the __SITE::addFilter($name,$instance) function,
+where $name is the character string that will be the associated
+name of your filter, and $instance is an instance of the filter
+class that you just created.
+
+For example, the code for the length filter is reproduced below
+
+"
+1 class __Filter_length extends AbstractFilter{
+2   public static function render($args,$var,&$vars){
+3     if(is_array($var))
+4       return count($var);
+5     return strlen($var);
+6   }
+7 }
+8 __SITE::addFilter("length",new __Filter_length);
+"
+
+Now, the custom filter can be used in a template.
+
+==========
+NAVIGATION
+==========
+-[Home] Pjango Documentation (index.)
+---[Installation] Installation Guide (index.)
+---[Libraries] Built-in Libraries (index.)
+-----[Including Library Files] Including Library Files
+       (including.)
+-----[Core] Core (index.)
+-------[Core Functions] Core Functions (index.)
+-------[Site Settings] Site Settings (index.)
+-------[Tags, Filters, and Middleware] Built-in Tags, Filters,
+         and Middleware (index.)
+---------[Filters] Filters (index.)
+-----------[AbstractFilter] abstract class AbstractFilter
+             (AbstractFilter.)
+-----------[Built-in Filters] Built-in Filter Reference
+             (builtins.)
+==========>[Custom Filters] Custom Filters (customFilters.)
+---------[Middleware] Middleware (index.)
+---------[Tags] Tags (index.)
+-----[SQL] SQL (index.)
+---[Writing Software] Development and Documentation (index.)

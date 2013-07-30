@@ -1,0 +1,88 @@
+Custom Tags
+===========
+
+While the built-in set of tags is fundamentally sufficient, you
+may find it necessary to implement your own, custom tags, to
+better suit your website's needs.
+
+Customizing your own tags is very simple: each tag is a child
+class of the AbstractTag class, and each implements
+the function "render($args,$c,&$vars)". See the AbstractTag
+documentation for more information about the AbstractTag class.
+
+The render() function is a public, static function, but you are
+free to create static helper functions and static class
+variables.
+
+The arguments, as explained in the AbstractTag documentation,
+represent the arguments passed into the tag ($args), the
+component representing the tag ($c), and the system variables
+at runtime ($vars).
+
+Additionally, your render() function must return a string that
+represents the tag after rendering. It may be useful to know
+that tags will not render their children by default; if you
+wish to render the tag's child components, call the component's
+renderComponents($vars) function, where $vars is, again, the
+system variables at runtime.
+
+Finally, you must register your tag with the __SITE class. this
+is done using the __SITE::addTag() function, which takes
+between 2 and 4 arguments.
+
+To register a tag that must be closed by an end-tag, the syntax
+is:
+
+"__SITE::addTag("TAGNAME",new TAGCLASS);"
+
+To register a tag that does not need to be closed by an end-tag
+(that is, it is self-closing), set the unclosed flag to be true
+in the addTag call:
+
+"__SITE::addTag("TAGNAME",new TAGCLASS,true);"
+
+Furthermore, if the tag should still contain content but will
+be closed by a different tag's end-tag, set the content flag to
+be true:
+
+"__SITE::addTag("TAGNAME",new TAGCLASS,true,true);"
+
+After registering the tag, you will be able to use it in your
+templates.
+
+For greater depth in understanding how tags work, you can look
+at the built-in tags and examine their functionality.
+
+==========
+NAVIGATION
+==========
+-[Home] Pjango Documentation (index.)
+---[Installation] Installation Guide (index.)
+---[Libraries] Built-in Libraries (index.)
+-----[Including Library Files] Including Library Files
+       (including.)
+-----[Core] Core (index.)
+-------[Core Functions] Core Functions (index.)
+-------[Site Settings] Site Settings (index.)
+-------[Tags, Filters, and Middleware] Built-in Tags, Filters,
+         and Middleware (index.)
+---------[Filters] Filters (index.)
+-----------[AbstractFilter] abstract class AbstractFilter
+             (AbstractFilter.)
+-----------[Built-in Filters] Built-in Filter Reference
+             (builtins.)
+-----------[Custom Filters] Custom Filters (customFilters.)
+---------[Middleware] Middleware (index.)
+-----------[AbstractMiddleware] abstract class
+             AbstractMiddleware (AbstractMiddleware.)
+-----------[Built-in Middleware] Built-in Middleware Reference
+             (builtins.)
+-----------[Custom Middleware] Custom Middleware
+             (customMiddleware.)
+---------[Tags] Tags (index.)
+-----------[AbstractTag] abstract class AbstractTag
+             (AbstractTag.)
+-----------[Built-in Tags] Built-in Tag Reference (builtins.)
+==========>[Custom Tags] Custom Tags (customTags.)
+-----[SQL] SQL (index.)
+---[Writing Software] Development and Documentation (index.)

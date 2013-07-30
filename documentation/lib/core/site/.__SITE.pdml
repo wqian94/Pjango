@@ -1,0 +1,166 @@
+<<<CLASS
+__SITE
+CLASS>>>
+
+<<<SHORT
+__SITE Class and Object
+SHORT>>>
+
+<<<CONTENT
+The main structure used for storing the site's settings, the
+<var>__SITE</var> class contains only static variables and functions, to
+eliminate the need to declare an instance of the class. This
+prevents the accidental deletion of the instance, or access
+otherwise that could destroy the entire infrastructure of this
+framework.
+
+As such, all of the functions should be accessed using
+
+<code>__SITE::function_name(arguments...)</code>
+
+This class's static variables have protected scope, so they
+cannot be accessed from outside the class. If you absolutely
+must manipulate something during runtime, you may declare a
+subclass of <var>__SITE</var> and use that to manipulate the
+variables that exist in <var>__SITE</var>.
+
+Be advised, however, that nothing in <code>site.php</code> should be
+modified, as unexpected results may happen. Instead, use the
+<code>settings.php</code> file in the library root <code>lib/</code> to
+apply your settings.
+CONTENT>>>
+
+<<<STATIC_VARIABLES
+<var>protected filters</var> -- Initialized as an empty array, it
+  stores the names-classname pairs of filters as <code>key=>value</code>
+  pairs in the array.
+
+<var>protected middleware</var> -- Initialized as an empty array,
+  it stores the priority-classname pairs as key and value,
+  respectively. During execution, middleware associated with
+  larger priority keys are executed before those associated
+  with smaller priority keys.
+
+  All middleware should be included at once, in appropriate
+  order, in <code>settings.php</code>. There should be no calls to add or
+  remove any middleware after the one in <code>settings.php</code>.
+
+<var>protected tags</var> -- Initialized as an empty array, it
+  stores the names-classname pairs of all tags as <code>key=>value</code>
+  pairs in the array.
+
+<var>protected unclosed_tags</var> -- Initialized as an empty
+  array, it stores the names of all tags that have no
+  associated closing tag as <code>key=>value</code> pairs in the array.
+  That is, these tags are self-closing.
+
+<var>protected unclosed_content_tags</var> -- Initialized as an
+  empty array, it stores the names of all tags that are part of
+  another tag, e.g. <var>elif</var>, as key=>value pairs in the
+  array. This allows these tags to have child components, but
+  are ended with an endtag that does not correspond to their
+  own classnames.
+
+<var>protected vars</var> -- Initialized as an array, it stores the
+  variables to be used in the template files by associating the
+  variable name to its value as <code>key=>value</code> pairs.
+  Essentially, these are the system globals within the context
+  of the framework.
+STATIC_VARIABLES>>>
+
+<<<FUNCTIONS
+<var>static addFilter($name,$obj)</var>
+  -- Registers a filter with the <var>__SITE</var> class. <var>$name</var> is the
+     name of the filter, and <var>$obj</var> is an instance of the class
+     to associate.
+
+<var>static addTag($name,$obj,$unclosed=false,$content=false)</var>
+  -- Registers a tag with the <var>__SITE</var> class. <var>$name</var> is the name
+     of the tag, <var>$obj</var> is an instance of the class to use,
+     <var>$unclosed</var> indicates whether the tag should be
+     self-closing (default is <var>false</var>), and <var>$content</var>
+     indicates whether a self-closing tag should be allowed to
+     have child components (default is <var>false</var>). Note that if
+     <var>$unclosed</var> is <var>false</var>, setting <var>$content</var> will have no effect.
+
+<var>static addMiddleware($m)</var>
+  -- <var>$m</var> is an associative array, with keys as priority values
+     and values as the middleware classnames. Middleware with
+     larger priority values are applied before those with
+     smaller priority values.
+
+     Note: This function should only be called once.
+
+<var>static addVars($v)</var>
+  -- <var>$v</var> is an associative array, with keys as variable names
+     and values as the variable values.
+
+<var>static execFilter($name,$args,$str,&$vars)</var>
+  -- Calls the <var>call_render()</var> function of the class associated
+     with the filter name <var>$name</var>, which subsequently calls its
+     <var>render($args,$var,$vars)</var> function. This <var>render</var> function
+     must be static to the class, which in turn must extend
+     from the <var>AbstractFilter</var> class. <var>$args</var> is the array of all
+     arguments passed into the filter, <var>$str</var> is the string to
+     apply the filter to, and <var>$vars</var> is the array containing the
+     system globals at that point in execution, which may
+     include introduced variables, such as loop variables in a
+     for-loop.
+     
+     Since <var>$vars</var> is passed in by reference,
+     the filter has the capability to access the system
+     variables by reference as well.
+
+<var>static execMiddleware($rendered)</var>
+  -- Calls the <var>render($text)</var> functions of the registered
+     middleware classes. Classes are called in decreasing order
+     of priority, which is based on the value of the keys
+     associated with the classnames of each middleware in the
+     <var>middlewares</var> static variable.
+
+<var>static execTag($name,$args,$comp,&$vars)</var>
+  -- Calls the <var>call_render()</var> function of the class associated
+     with the tag name <var>$name</var>, which subsequently calls its own
+     <var>render($args,$c,$vars)</var> function. This <var>render</var> function
+     must be static to the class, which in turn must extend
+     from the <var>AbstractTag</var> class. <var>$args</var> is the array containing
+     the arguments of the tag, <var>$comp</var> contains the child
+     components of the tag, and <var>$vars</var> contains the system
+     global variables at that point in execution. This may or may
+     not include introduced variables, such as loop variables
+     if within a for-loop.
+     
+     Since <var>$vars</var> is passed in by reference,
+     the tag has the capability to access the system variables
+     by reference as well.
+
+<var>static get()</var>
+  -- Returns a direct copy of the system globals as stored in
+     the <var>__SITE</var> class.
+
+<var>static getTagNames()</var>
+  -- Returns an array containing all tag names.
+
+<var>static getUnclosedTagNames()</var>
+  -- Returns an array containing only the tag names of tags
+     that are self-closing and do not have child components.
+
+<var>static getUnclosedContentTagNames()</var>
+  -- Returns an array containing only the tag names of tags
+     that are self-closing and can have child components.
+
+<var>static preprocess()</var>
+  -- Runs the <var>preprocess()</var> static functions of the middleware
+     that is installed, in forward ordering of the keys, as
+     opposed to backwards in executing the middleware.
+
+<var>static refactor()</var>
+  -- Ensures all <var>PATH</var> variables end with <var>/</var>, and that
+     all views are absolute paths. This modifies these variables
+     as stored in the <var>__SITE</var> class.
+
+<var>static set()</var>
+  -- Sets the internally stored system globals as actual global
+     variables, prepended with <var>__</var>. E.g. <var>$__PATH</var>.
+
+FUNCTIONS>>>

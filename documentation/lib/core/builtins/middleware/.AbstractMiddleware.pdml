@@ -1,0 +1,35 @@
+<<<CLASS
+abstract AbstractMiddleware
+CLASS>>>
+
+<<<SHORT
+AbstractMiddleware
+SHORT>>>
+
+<<<CONTENT
+Found in <code>lib/core/core.php</code>, the <var>AbstractMiddleware</var> class
+serves as a basic template for all middleware. Moreover, in
+for a middleware class to be successfully registered and used,
+it must extend from this class.
+
+Note that the <code>preprocess</code> and <code>render</code> functions are public
+and static; as such, instance variables and functions cannot be
+used within a filter class. Static and class variables are
+still viable.
+CONTENT>>>
+
+<<<FUNCTIONS
+<var>public static preprocess()</var>
+  -- Applies the preprocessing rules of this middleware to the
+     site before any rendering is done. Mostly, this allows the
+     middleware to check for any conditions to throw errors at.
+
+     By default, nothing is done.
+
+<var>public static render($text)</var>
+  -- Applies this middleware to the rendered string. Must
+     return a resulting string, or else nothing will be printed
+     in the end.
+
+     By default, the input text is returned.
+FUNCTIONS>>>

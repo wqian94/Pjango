@@ -1,0 +1,69 @@
+abstract class AbstractComponent
+================================
+
+The AbstractComponent class is the abstract parent class of all
+the other component classes.
+ 
+Static Variables
+ 
+const TAG -- Has value "TAG".
+
+const TXT -- Has value "TXT".
+
+const VAR -- Has value "VAR".
+ 
+Instance Variables
+ 
+public data -- Initialized to array(),
+  placeholder for any additional data that needs to be stored
+  in the component.
+
+private token -- The Token that this component represents.
+ 
+Functions
+ 
+getToken() -- Returns the represented Token.
+
+setToken($tok) -- Sets the value of token.
+
+==========
+NAVIGATION
+==========
+-[Home] Pjango Documentation (index.)
+---[Installation] Installation Guide (index.)
+---[Libraries] Built-in Libraries (index.)
+-----[Including Library Files] Including Library Files
+       (including.)
+-----[Core] Core (index.)
+-------[Core Functions] Core Functions (index.)
+========>[AbstractComponent] abstract class AbstractComponent
+           (AbstractComponent.)
+---------[RootComponent] class RootComponent (RootComponent.)
+---------[TagComponent] class TagComponent (TagComponent.)
+---------[Token] class Token (Token.)
+---------[TxtComponent] class TxtComponent (TxtComponent.)
+---------[ValComponent] class ValComponent (ValComponent.)
+---------[View] class View (View.)
+-------[Site Settings] Site Settings (index.)
+-------[Tags, Filters, and Middleware] Built-in Tags, Filters,
+         and Middleware (index.)
+---------[Filters] Filters (index.)
+-----------[AbstractFilter] abstract class AbstractFilter
+             (AbstractFilter.)
+-----------[Built-in Filters] Built-in Filter Reference
+             (builtins.)
+-----------[Custom Filters] Custom Filters (customFilters.)
+---------[Middleware] Middleware (index.)
+-----------[AbstractMiddleware] abstract class
+             AbstractMiddleware (AbstractMiddleware.)
+-----------[Built-in Middleware] Built-in Middleware Reference
+             (builtins.)
+-----------[Custom Middleware] Custom Middleware
+             (customMiddleware.)
+---------[Tags] Tags (index.)
+-----------[AbstractTag] abstract class AbstractTag
+             (AbstractTag.)
+-----------[Built-in Tags] Built-in Tag Reference (builtins.)
+-----------[Custom Tags] Custom Tags (customTags.)
+-----[SQL] SQL (index.)
+---[Writing Software] Development and Documentation (index.)

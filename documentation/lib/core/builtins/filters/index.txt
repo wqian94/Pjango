@@ -1,0 +1,43 @@
+Filters
+=======
+
+Filters are essentially in-template functions applied to
+variables. For example, to apply the filter "add" to a variable
+called "value", we would write
+
+"{{ value|add:2 }}"
+
+and the engine would replace that particular string with the
+result of "value+2".
+
+Pjango, like Django, provides for the ability to customize your
+own filters, on top of the preexisting filters. This is done by
+extending the AbstractFilter class and registering the filter
+with the __SITE class.
+
+Details about the AbstractFilter class, custom filters and
+built-in filters are available.
+
+==========
+NAVIGATION
+==========
+-[Home] Pjango Documentation (index.)
+---[Installation] Installation Guide (index.)
+---[Libraries] Built-in Libraries (index.)
+-----[Including Library Files] Including Library Files
+       (including.)
+-----[Core] Core (index.)
+-------[Core Functions] Core Functions (index.)
+-------[Site Settings] Site Settings (index.)
+-------[Tags, Filters, and Middleware] Built-in Tags, Filters,
+         and Middleware (index.)
+========>[Filters] Filters (index.)
+-----------[AbstractFilter] abstract class AbstractFilter
+             (AbstractFilter.)
+-----------[Built-in Filters] Built-in Filter Reference
+             (builtins.)
+-----------[Custom Filters] Custom Filters (customFilters.)
+---------[Middleware] Middleware (index.)
+---------[Tags] Tags (index.)
+-----[SQL] SQL (index.)
+---[Writing Software] Development and Documentation (index.)

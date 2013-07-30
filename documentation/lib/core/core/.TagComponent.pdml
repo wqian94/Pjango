@@ -1,0 +1,57 @@
+<<<CLASS
+TagComponent
+CLASS>>>
+
+<<<EXTENDS
+AbstractComponent
+EXTENDS>>>
+
+<<<SHORT
+TagComponent
+SHORT>>>
+
+<<<CONTENT
+The TagComponent class represents a tag, in either block or
+inline form, and its subtree.
+CONTENT>>>
+
+<<<STATIC_VARIABLES
+<var>const TYPE</var> -- Has value of <var>TagComponent::TAG</var>.
+STATIC_VARIABLES>>>
+
+<<<VARIABLES
+<var>protected args</var> -- And arguments passed into the tag.
+
+<var>public components</var> -- Array of the children of this component.
+
+<var>protected name</var> -- Name/identifier of the tag.
+
+<var>public parent</var> -- Initialized null. The parent component
+  of this tag.
+
+<var>public vars</var> -- Public-scope container for the variables
+  that exist at runtime.
+VARIABLES>>>
+
+<<<FUNCTIONS
+<var>__construct($tok)</var>
+  -- The Token to represent. Automatically parses for <var>name</var>
+     and <var>args</var>. Initializes the uninitialized class
+     variables.
+
+<var>getArgs()</var>
+  -- Returns the array of arguments passed into this tag.
+
+<var>getName()</var>
+  -- Returns the <var>name</var> of this tag.
+
+<var>render($args)</var>
+  -- Renders this tag to generate some string output, based on
+     the variables defined in <var>$args</var>. Each key in
+     <var>$args</var> represents the identifier of the variable to be
+     used.
+
+<var>renderComponents($args)</var>
+  -- Returns the concatenated string outputs of all the child
+     components by calling their <var>render()</var> functions.
+FUNCTIONS>>>

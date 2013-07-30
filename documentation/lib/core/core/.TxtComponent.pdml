@@ -1,0 +1,28 @@
+<<<CLASS
+TxtComponent
+CLASS>>>
+
+<<<EXTENDS
+AbstractComponent
+EXTENDS>>>
+
+<<<SHORT
+TxtComponent
+SHORT>>>
+
+<<<CONTENT
+The TxtComponent class represents a block of plaintext.
+CONTENT>>>
+
+<<<STATIC_VARIABLES
+<var>const TYPE</var> -- Has value of <var>TxtComponent::TXT</var>.
+STATIC_VARIABLES>>>
+
+<<<FUNCTIONS
+<var>__construct($tok)</var>
+  -- The Token to represent. Must have type <var>Token::TXT</var>.
+
+<var>render($args)</var>
+  -- Returns the content of the Token that this component
+     represents.
+FUNCTIONS>>>

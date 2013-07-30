@@ -1,0 +1,18 @@
+<<<TITLE
+Generating Documentation
+TITLE>>>
+
+<<<SHORT
+Generating Documentation
+SHORT>>>
+
+<<<CONTENT
+There are two ways to generate the documentation. The first is
+run the <var>make</var> command from the command line, at the
+documentation. The second is to run the <var>documentationCompiler.php</var>
+script from the documentation root.
+
+If you wish to remove all TXT and HTM files, you can call
+<var>make clean</var> or run the <var>documentationCleaner.php</var>
+script.
+CONTENT>>>

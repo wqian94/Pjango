@@ -1,0 +1,14 @@
+<<<TITLE
+Built-in Tags, Filters, and Middleware
+TITLE>>>
+
+<<<SHORT
+Tags, Filters, and Middleware
+SHORT>>>
+
+<<<CONTENT
+Pjango has a built-in set of tags, filters, and middleware that
+you can choose to use. These include most of the tags, filters,
+and middleware in Django, as well as some not found in Django
+that may be useful to you.
+CONTENT>>>

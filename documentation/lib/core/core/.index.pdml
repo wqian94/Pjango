@@ -1,0 +1,16 @@
+<<<TITLE
+Core Functions
+TITLE>>>
+
+<<<SHORT
+Core Functions
+SHORT>>>
+
+<<<CONTENT
+The <code>/lib/core/core.php</code> file contains the view-based container
+classes responsible for storing and representing the loaded
+template file. Classes found in this file are:
+
+<a href="View.htm">View</a>, <a href="core.html#class_Token.htm">Token</a>, <a href="AbstractComponent.htm">AbstractComponent</a>, <a href="TagComponent.htm">TagComponent</a>, <a href="ValComponent.htm">ValComponent</a>,
+<a href="TxtComponent.htm">TxtComponent</a>, and <a href="RootComponent.htm">RootComponent</a>
+CONTENT>>>

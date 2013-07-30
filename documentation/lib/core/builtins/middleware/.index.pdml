@@ -1,0 +1,21 @@
+<<<TITLE
+Middleware
+TITLE>>>
+
+<<<SHORT
+Middleware
+SHORT>>>
+
+<<<CONTENT
+Middleware are a concept designed to change the environment
+that you are working in. In Pjango, they are mostly used to
+post-process the templates after rendering.
+
+Unlike <a href="../tags/index.htm">tags</a> and <a href="../filters/index.htm">filters</a>, which tend to affect only sections of
+the rendered text, middleware affects pretty much the entire
+rendered text. As such, when writing and using middleware, be
+aware of its effects on your entire code.
+
+Details about <a href="AbstractMiddleware.htm">the AbstractMiddleware class</a>, <a href="customMiddleware.htm">custom middleware</a> and
+<a href="builtins.htm">built-in middleware</a> are available.
+CONTENT>>>

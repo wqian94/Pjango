@@ -1,0 +1,2 @@
+RemoveHandler x-httpd-php5-cgi .css
+RemoveHandler php5-script .css

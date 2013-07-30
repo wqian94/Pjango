@@ -1,0 +1,18 @@
+# .htaccess file for link redirection
+
+Options -Multiviews
+Options +FollowSymLinks
+
+RewriteEngine On
+
+RewriteCond %{HTTP_HOST} ^(.*\.)+([^.]*\.[^.]*)$
+RewriteRule ^(.*)$ http://%2/$1 [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^(.*)$
+RewriteRule ^(((?!(default\.(asp|html|htm))|(index\.(php|html|cgi|pl))|(^documentation/)).)+)$ (WEBROOT)?$1?&%1 [NC,NE,L]
+
+RewriteCond %{QUERY_STRING} ^(.*)$
+RewriteRule ^((.*/)+)((default)\.(asp|html|htm))(.*)$ (WEBROOT)?$1$4$6?&%1 [NC,NE,L]
+
+AddHandler x-httpd-php5-cgi .php .asp .htm .html .css .js
+AddHandler php5-script .php .asp .htm .html .css .js

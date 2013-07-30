@@ -1,0 +1,41 @@
+<<<CLASS
+abstract AbstractTag
+CLASS>>>
+
+<<<SHORT
+AbstractTag
+SHORT>>>
+
+<<<CONTENT
+Found in <code>lib/core/core.php</code>, the <var>AbstractTag</var> class serves as
+a basic template for all tags. Moreover, in order for a tag to
+be recognized, it must extend this class.
+
+Note that the <code>render</code> function is public and static; as such,
+instance variables and functions cannot be used within a filter
+class. Static and class variables are still viable.
+
+Also note that the <code>call_render</code> is final. This means that it
+cannot be changed by child classes.
+CONTENT>>>
+
+<<<FUNCTIONS
+<var>final public static call_render($container)</var>
+  -- Unwraps the container passed in and provides the arguments
+	   to the <code>render()</code> function. Cannot, and should not be
+		 overridden by child classes.
+
+<var>abstract public static render($args,$c,&$vars)</var>
+  -- Presents the tag with the component object <var>$c</var>, which is
+     an instance of <var>TagComponent</var>, and the arguments passed into
+     the tag, <var>$args</var>, with the current state of system variables
+     at runtime, <var>$vars</var>, which is passed by reference.
+
+     This function must be overridden by any subclass, which
+     includes all viable tags. The output should be a string
+     that represents the tag.
+
+     Furthermore, take note that tags do not render their
+     subcomponents automatically; it is necessary to call upon
+     the <var>TagComponent</var>'s <var>renderComponents($vars)</var> function.
+FUNCTIONS>>>

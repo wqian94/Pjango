@@ -1,0 +1,61 @@
+<<<TITLE
+Custom Tags
+TITLE>>>
+
+<<<SHORT
+Custom Tags
+SHORT>>>
+
+<<<CONTENT
+While the built-in set of tags is fundamentally sufficient, you
+may find it necessary to implement your own, custom tags, to
+better suit your website's needs.
+
+Customizing your own tags is very simple: each tag is a child
+class of the <var>AbstractTag</var> class, and each implements
+the function <code>render($args,$c,&$vars)</code>. See the <a href="AbstractTag.htm">AbstractTag
+documentation</a> for more information about the AbstractTag class.
+
+The <var>render()</var> function is a public, static function, but you are
+free to create static helper functions and static class
+variables.
+
+The arguments, as explained in the AbstractTag documentation,
+represent the arguments passed into the tag (<var>$args</var>), the
+component representing the tag (<var>$c</var>), and the system variables
+at runtime (<var>$vars</var>).
+
+Additionally, your <var>render()</var> function must return a string that
+represents the tag after rendering. It may be useful to know
+that tags will not render their children by default; if you
+wish to render the tag's child components, call the component's
+<var>renderComponents($vars)</var> function, where <var>$vars</var> is, again, the
+system variables at runtime.
+
+Finally, you must register your tag with the <var>__SITE</var> class. this
+is done using the <var>__SITE::addTag()</var> function, which takes
+between 2 and 4 arguments.
+
+To register a tag that must be closed by an end-tag, the syntax
+is:
+
+<code>__SITE::addTag("TAGNAME",new TAGCLASS);</code>
+
+To register a tag that does not need to be closed by an end-tag
+(that is, it is self-closing), set the unclosed flag to be true
+in the <var>addTag</var> call:
+
+<code>__SITE::addTag("TAGNAME",new TAGCLASS,true);</code>
+
+Furthermore, if the tag should still contain content but will
+be closed by a different tag's end-tag, set the content flag to
+be true:
+
+<code>__SITE::addTag("TAGNAME",new TAGCLASS,true,true);</code>
+
+After registering the tag, you will be able to use it in your
+templates.
+
+For greater depth in understanding how tags work, you can look
+at the built-in tags and examine their functionality.
+CONTENT>>>

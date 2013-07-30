@@ -1,0 +1,61 @@
+Custom Middleware
+=================
+
+Middleware is often important but lacking in most packages. In
+fact, it is often the case that you need to customize your own
+middleware for your projects.
+
+Building and using a custom middleware is exceedingly simple:
+the only requirement is that your middleware class must extend
+from the AbstractMiddleware class. Of course, whether the
+preprocesing and rendering functions are overridden is up to
+you; without any overrides, a middleware class does absolutely
+nothing.
+
+As noted in the AbstractMiddleware class, there are only two
+functions to consider: the "preprocess" and "render" functions.
+
+The "preprocess()" function is run after all the
+libraries files in "lib/" have been included, and before any
+rendering is done. This is useful for pre-rendering checks, as
+in the CSRF middleware.
+
+The "render($text)" function is run after rendering the
+template, with the rendered text in the variable $text. This is
+essentially post-processing the output. The return value of
+this function will ultimately be passed on to other middleware
+before it is outputted to the client.
+
+In order to use a middleware, add it to the list in
+"settings.php", where the call is made to the __SITE class's
+"addMiddleware" function. Remember that ordering is important.
+
+==========
+NAVIGATION
+==========
+-[Home] Pjango Documentation (index.)
+---[Installation] Installation Guide (index.)
+---[Libraries] Built-in Libraries (index.)
+-----[Including Library Files] Including Library Files
+       (including.)
+-----[Core] Core (index.)
+-------[Core Functions] Core Functions (index.)
+-------[Site Settings] Site Settings (index.)
+-------[Tags, Filters, and Middleware] Built-in Tags, Filters,
+         and Middleware (index.)
+---------[Filters] Filters (index.)
+-----------[AbstractFilter] abstract class AbstractFilter
+             (AbstractFilter.)
+-----------[Built-in Filters] Built-in Filter Reference
+             (builtins.)
+-----------[Custom Filters] Custom Filters (customFilters.)
+---------[Middleware] Middleware (index.)
+-----------[AbstractMiddleware] abstract class
+             AbstractMiddleware (AbstractMiddleware.)
+-----------[Built-in Middleware] Built-in Middleware Reference
+             (builtins.)
+==========>[Custom Middleware] Custom Middleware
+             (customMiddleware.)
+---------[Tags] Tags (index.)
+-----[SQL] SQL (index.)
+---[Writing Software] Development and Documentation (index.)

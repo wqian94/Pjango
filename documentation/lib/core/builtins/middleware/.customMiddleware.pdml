@@ -1,0 +1,38 @@
+<<<TITLE
+Custom Middleware
+TITLE>>>
+
+<<<SHORT
+Custom Middleware
+SHORT>>>
+
+<<<CONTENT
+Middleware is often important but lacking in most packages. In
+fact, it is often the case that you need to customize your own
+middleware for your projects.
+
+Building and using a custom middleware is exceedingly simple:
+the only requirement is that your middleware class must extend
+from the <var>AbstractMiddleware</var> class. Of course, whether the
+preprocesing and rendering functions are overridden is up to
+you; without any overrides, a middleware class does absolutely
+nothing.
+
+As noted in the <a href="AbstractMiddleware.htm">AbstractMiddleware class</a>, there are only two
+functions to consider: the <code>preprocess</code> and <code>render</code> functions.
+
+The <code>preprocess()</code> function is run after all the
+libraries files in <code>lib/</code> have been included, and before any
+rendering is done. This is useful for pre-rendering checks, as
+in the CSRF middleware.
+
+The <code>render($text)</code> function is run after rendering the
+template, with the rendered text in the variable <var>$text</var>. This is
+essentially post-processing the output. The return value of
+this function will ultimately be passed on to other middleware
+before it is outputted to the client.
+
+In order to use a middleware, add it to the list in
+<code>settings.php</code>, where the call is made to the <var>__SITE</var> class's
+<code>addMiddleware</code> function. Remember that ordering is important.
+CONTENT>>>

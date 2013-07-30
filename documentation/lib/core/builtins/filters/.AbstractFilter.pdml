@@ -1,0 +1,38 @@
+<<<CLASS
+abstract AbstractFilter
+CLASS>>>
+
+<<<SHORT
+AbstractFilter
+SHORT>>>
+
+<<<CONTENT
+Found in <code>lib/core/core.php</code>, the <var>AbstractFilter</var> class serves
+as a basic template for all filters. Moreover, in order for a
+filter to be executed, it must extend this class.
+
+Note that the <code>render</code> function is public and static; as such,
+instance variables and functions cannot be used within a filter
+class. Static and class variables are still viable.
+
+Also note that the <code>call_render</code> is final. This means that it
+cannot be changed by child classes.
+CONTENT>>>
+
+<<<FUNCTIONS
+<var>final public static call_render($container)</var>
+  -- Unwraps the container passed in and provides the arguments
+	   to the <code>render()</code> function. Cannot, and should not be
+		 overridden by child classes.
+
+<var>abstract public static render($args,$var,&$vars)</var>
+  -- Applies the filter to the content of <var>$var</var>, which may be a
+     string, a number, an array, etc. <var>$args</var> contains the array
+     of arguments passed into the filter, and <var>$vars</var> contains
+     the system variables at runtime, passed by reference.
+
+     This function must be overridden by any subclass, which
+     includes all viable filters. The output should be another
+     value, be it a string, number, array, etc. that represents
+     the application of this filter on <var>$var</var>.
+FUNCTIONS>>>

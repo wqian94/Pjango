@@ -1,0 +1,630 @@
+<<<TITLE
+Built-in Filter Reference
+TITLE>>>
+
+<<<SHORT
+Built-in Filters
+SHORT>>>
+
+<<<ANCHORS
+add
+add
+addslashes
+addslashes
+capfirst
+capfirst
+center
+center
+cut
+cut
+date
+date
+default
+default
+default_if_none
+default_if_none
+default_if_null
+default_if_null
+dictsort
+dictsort
+dictsortreversed
+dictsortreversed
+divisibleby
+divisibleby
+escape
+escape
+escapejs
+escapejs
+filesizeformat
+filesizeformat
+first
+first
+fix_ampersands
+fix_ampersands
+floatformat
+floatformat
+force_escape
+force_escape
+get_digit
+get_digit
+join
+join
+last
+last
+length
+length
+length_is
+length_is
+linebreaks
+linebreaks
+linebreakbr
+linebreakbr
+linenumbers
+linenumbers
+ljust
+ljust
+lower
+lower
+make_list
+make_list
+phone2numeric
+phone2numeric
+pluralize
+pluralize
+random
+random
+removetags
+removetags
+rjust
+rjust
+safe
+safe
+slice
+slice
+slugify
+slugify
+stringformat
+stringformat
+striptags
+striptags
+time
+time
+title
+title
+truncatechars
+truncatechars
+truncatewords
+truncatewords
+truncatewords_html
+truncatewords_html
+unordered_list
+unordered_list
+upper
+upper
+urlize
+urlize
+urlizetrunc
+urlizetrunc
+wordcount
+wordcount
+wordwrap
+wordwrap
+yesno
+yesno
+ANCHORS>>>
+
+<<<CONTENT
+<div style="margin:1em 0;">References for the built-in filters are found below. Examples,
+where appropriate, may be provided.
+</div> 
+<hr />
+<a id="add"></a><h2>add</h2>
+Adds two numbers together, merges two arrays together, or if
+neither is possible, will resort to concatenating the input and
+argument as strings. Strings that can be resolved into numbers
+will be treated as numbers, not strings.
+<example>
+<var>{{ value|add:"2" }}</var> outputs <var>5</var> if <var>value</var> is <var>3</var>.
+</example>
+<hr />
+<a id="addslashes"></a><h2>addslashes</h2>
+Database-escapes (prepends a backslash to) all
+single quotes ('), double quotes ("), and backslashes (\).
+<example>
+<var>{{ "I'm using Pjango"|addslashes }}</var> outputs <var>"I\'m using Pjango"</var>.
+</example>
+<hr />
+<a id="capfirst"></a><h2>capfirst</h2>
+Capitalizes the first character in the passed string.
+<example>
+<var>{{ "pjango is cool"|capfirst }}</var> outputs <var>"Pjango is cool"</var>.
+</example>
+<hr />
+<a id="center"></a><h2>center</h2>
+Uses spaces to pad a string to the given length and roughly
+center the input string.
+<example>
+<var>{{ "Pjango"|center:"15 }}</var> outputs <var>"<spaces>     </spaces>Pjango<spaces>    </spaces>"</var>.
+</example>
+<hr />
+<a id="cut"></a><h2>cut</h2>
+Removes all instances of the argument from the input string.
+<example>
+<var>{{ "Pjango has spaces"|cut:" " }}</var> outputs <var>"Pjangohasspaces"</var>.
+</example>
+<hr />
+<a id="date"></a><h2>date</h2>
+Calls PHP's <var>date()</var> function, documented <a href="http://php.net/date">http://php.net/date</a>.
+
+If input is a timestamp, it will be passed into the <var>date()</var>
+function; otherwise, the current time will be used.
+
+The argument dictates the format of the string.
+<example>
+<var>{{ value|date:"M j, Y" }}</var> outputs <var>"Jun 23, 2013"</var> if <var>value</var> is
+the appropriate timestamp.
+</example>
+If no format is passed as the argument, the default format is
+<var>"r"</var>, the RFC 2822 format.
+<example>
+<var>{{ value|date }}</var> output <var>"Sun, 23 Jun 2013 16:38:40 -0400"</var> if
+<var>value</var> is the appropriate timestamp.
+</example>
+<hr />
+<a id="default"></a><h2>default</h2>
+If the input value evaluates (==) to <var>false</var>, outputs the value
+of the argument. Otherwise, outputs the value of the input.
+<example>
+<var>{{ value|default:"False" }}</var> outputs <var>"False"</var> if <var>value</var> is <var>0</var>,
+<var>false</var>, or <var>""</var>.
+</example>
+<hr />
+<a id="default_if_none"></a><h2>default_if_none</h2>
+See <var>default_if_null</var> below.
+<hr />
+<a id="default_if_null"></a><h2>default_if_null</h2>
+If the input value is strictly (===) <var>null</var>, outputs the value of
+the argument. Otherwise, outputs the value of the input.
+<example>
+<var>{{ value|defualt:"Null" }}</var> output <var>"Null"</var> if <var>value</var> is strictly
+<var>null</var>.
+</example>
+<hr />
+<a id="dictsort"></a><h2>dictsort</h2>
+Sorts an non-associative array with associative subarrays by
+the subarray key provided in the argument.
+<example>
+If
+<var>
+value</var> is <var>array(array("make"=>"Audi","year"=>1999),<span class="nodisplay">
+    </span>array("make"=>"Cadillac","year"=>1999),<span class="nodisplay">
+    </span>array("make"=>"Audi","year"=>2000))</var>
+
+then
+
+<var>{{ value|dictsort:"make" }}</var> outputs
+
+<var>
+Array(<br />
+<spaces>  </spaces>[0] => Array(<br />
+<spaces>    </spaces>"make" => "Audi",<br />
+<spaces>    </spaces>"year" => 1999<br />
+<spaces>  </spaces>),<br />
+<spaces>  </spaces>[1] => Array(<br />
+<spaces>    </spaces>"make" => "Audi",<br />
+<spaces>    </spaces>"year" => 2000<br />
+<spaces>  </spaces>),<br />
+<spaces>  </spaces>[2] => Array(<br />
+<spaces>    </spaces>"make" => "Cadillac",<br />
+<spaces>    </spaces>"year" => 1999<br />
+<spaces>  </spaces>)<br />
+)
+</var>
+</example>
+<hr />
+<a id="dictsortreversed"></a><h2>dictsortreversed</h2>
+Same as <code>dictsort</code>, but keys will be in reverse
+order, corresponding to the use of <code>krsort</code> in PHP's
+standard library, as opposed to <code>ksort</code>.
+<hr />
+<a id="divisibleby"></a><h2>divisibleby</h2>
+Returns <var>true</var> if the argument divides evenly into the
+input value, and false if not, or if the input value is not a
+number. That is, returns true if the input value is congruent
+to <var>0 mod argument</var>.
+<example>
+{{ value|divisbleby:"2" }} will have a value of <var>true</var> if <var>value</var>
+is even.
+</example>
+<hr />
+<a id="escape"></a><h2>escape</h2>
+Escapes a string's HTML by making these replacements:
+
+<ul><li><var>&lt;</var> is converted to <var>&amp;lt;</var></li>
+<li><var>&gt;</var> is converted to <var>&amp;gt;</var></li>
+<li><var>&#39;</var> is converted to <var>&amp;#39;</var></li>
+<li><var>&quot;</var> is converted to <var>&amp;quot;</var></li>
+<li><var>&amp;</var> is converted to <var>&amp;amp;</var></li></ul>
+
+Also prevents any autoescaping from occuring on the resulting
+output. See the <a href="builtins.htm#safe">safe tag</a> for more details.
+
+Behaviorwise, this filter will always be applied last, after
+all other filters have been applied, regardless of where this
+filter actually appears. In order to escape immediately, use
+the <code>force_escape</code> filter. Note that <code>force_escape</code> does not
+prevent its output from being autoescaped.
+<hr />
+<a id="escapejs"></a><h2>escapejs</h2>
+Escapes input string according to JSON rules. That is, applies
+PHP's <code>json_encode</code> to the input string.
+<hr />
+<a id="filesizeformat"></a><h2>filesizeformat</h2>
+Uses the numerical value of the input to determine the prefix
+appropriate for that value, and returns the string in human-
+readable form.
+
+The final numerical value will be no greater than 1000, with
+subdivisions of 1024, and no more than 1 digit after the
+decimal point.
+<example>
+<var>{{ value|filesizeformat }}</var> outputs <var>196.6 KiB</var> if <var>value</value> is <var>201300</var>.
+</example>
+<hr />
+<a id="first"></a><h2>first</h2>
+Returns the first item to be iterated in the input if it is an
+array, or the first character if the input is a string.
+<example>
+<var>{{ value|first }}</var> outputs <var>"first"</var> if <var>value</var> is
+<var>array("first","second")</var>.
+</example>
+<hr />
+<a id="fix_ampersands"></a><h2>fix_ampersands</h2>
+Replaces ampersands that are not part of HTML entities.
+<example>
+<var>{{ "Tom &amp; Ben &amp;amp; Jerry"|fix_ampersands }}</var> outputs <var>"Tom &amp;amp; Ben &amp;amp; Jerry"</var>.
+</example>
+<hr />
+<a id="floatformat"></a><h2>floatformat</h2>
+If the argument is nonnegative, the input value is rounded to
+exactly that many decimal places, with extra zeroes if
+necessary. If the argument is negative, the input value is
+rounded to at most <var>abs(argument)</var> number of
+places after the decimal. This will exclude any trailing zeroes
+in the number.
+<example>
+<var>{{ 626.2013|floatformat }}</var> outputs <var>626.2</var><br />
+<var>{{ 626.0000|floatformat }}</var> outputs <var>626</var><br />
+<var>{{ 626.1900|floatformat }}</var> outputs <var>626.2</var>
+
+<var>{{ 626.2013|floatformat:3 }}</var> outputs <var>626.201</var><br />
+<var>{{ 626.0000|floatformat:3 }}</var> outputs <var>626.000</var><br />
+<var>{{ 626.1900|floatformat:3 }}</var> outputs <var>626.190</var>
+
+<var>{{ 626.2013|floatformat:-3 }}</var> outputs <var>626.201</var><br />
+<var>{{ 626.0000|floatformat:-3 }}</var> outputs <var>626</var><br />
+<var>{{ 626.1900|floatformat:-3 }}</var> outputs <var>626.190</var>
+</example>
+<hr />
+<a id="force_escape"></a><h2>force_escape</h2>
+Applies the <var>escape</var> filter immediately, instead of waiting until
+the end.
+<hr />
+<a id="get_digit"></a><h2>get_digit</h2>
+Given an argument, returns the digit in the <var>10<iftxt>^</iftxt><span class="superscript">argument</span></var> place.
+That is, the rightmost digit is <var>0</var>, and increases to the left.
+<example>
+<var>{{ 9876543210|get_digit:4 }}</var> outputs <var>4</var>.
+</example>
+<hr />
+<a id="join"></a><h2>join</h2>
+Joins the input array with the argument string. Does not check
+for the input being an array, so expect errors if the input is
+not an array. This is essentially a wrapper for the PHP <var>join</var>
+function. Default delimiter is <var>""</var>, used in the absence of an
+argument.
+<example>
+<var>{{ value|join:" | " }}</var> outputs <var>"true | false | maybe"</var> if <var>value</var>
+is <var>array("true","false","maybe")</var>.
+</example>
+<hr />
+<a id="last"></a><h2>last</h2>
+Returns the last item to be iterated in the input array.
+Specifically, it returns the first item to be iterated when the
+array is reversed.
+<example>
+<var>{{ value|first }}</var> outputs <var>"second"</var> if <var>value</var> is
+<var>array("first","second")</var>.
+</example>
+<hr />
+<a id="length"></a><h2>length</h2>
+Returns the length of the array, if an array, or string if
+otherwise. Applies <var>count()</var> to arrays, and <var>strlen()</var> to strings.
+<example>
+<var>{{ "Pjango is pretty cool!"|length }}</var> outputs <var>22</var>.
+</example>
+<hr />
+<a id="length_is"></a><h2>length_is</h2>
+Returns whether the argument is equal to the output of applying
+the <var>length</var> filter to the input array or string.
+<example>
+<var>{{ "Pjango is pretty cool!"|length_is:22 }}</var> outputs <var>1</var> (<var>true</var>).
+</example>
+<hr />
+<a id="linebreaks"></a><h2>linebreaks</h2>
+Replaces <var>"\n\n"</var> with paragraph breaks (<var>&lt;p&gt;</var>, <var>&lt;/p&gt;</var>),
+and single <var>"\n"</var> with line breaks (<var>&lt;br /&gt;</var>).
+<example>
+<var>{{ "Paragraph\n\nLinebreak\nEnd"|linebreaks }}</var> outputs
+<var>"&lt;p&gt;Paragraph&lt;/p&gt;&lt;p&gt;Linebreak&lt;br /&gt;End&lt;/p&gt;"</var>.
+</example>
+<hr />
+<a id="linebreaksbr"></a><h2>linebreaksbr</h2>
+Replaces all <var>"\n"</var> with line breaks (<var>&lt;br /&gt;</var>).
+<example>
+<var>{{ "Paragraph\n\nLinebreak\nEnd"|linebreaks }}</var> outputs
+<var>"Paragraph&lt;br /&gt;&lt;br /&gt;Linebreak&lt;br /&gt;End"</var>.
+</example>
+<hr />
+<a id="linenumbers"></a><h2>linenumbers</h2>
+Numbers each line based on <var>"\n"</var> characters.
+<example>
+<var>{{ "one\ntwo\nthree"|linenumbers }}</var> outputs <var>"1. one\n2. two\n3. three"</var>.
+</example>
+<hr />
+<a id="ljust"></a><h2>ljust</h2>
+Pads the end of the input string with spaces in order to obtain
+the string length indicated in the argument.
+<example>
+<var>{{ "Pjango"|ljust:15 }}</var> outputs <var><spaces>"Pjango         "</spaces></var>.
+</example>
+<hr />
+<a link="lower"></a><h2>lower</h2>
+Converts all characters in the input string to lowercase.
+<example>
+<var>{{ "I love Pjango"|lower }}</var> outputs <var>"i love pjango"</var>.
+</example>
+<hr />
+<a link="make_list"></a><h2>make_list</h2>
+Converts input into an array. First tries to rectify the input
+into a string, then applies <var>str_split()</var> to the string, with the
+empty string (<var>""</var>) as the delimiter.
+<example>
+<var>{{ "Pjango"|make_list }}</var> outputs the equivalent of
+<var>array("P","j","a","n","g","o")</var>.
+</example>
+<hr />
+<a id="phone2numeric"></a><h2>phone2numeric</h2>
+Converts a string into telephone numbers by converting all
+letters into their appropriate numbers, regardless of case.
+<example>
+<var>{{ "Pjango"|phone2numeric }}</var> outputs <var>"752646"</var>.
+</example>
+<hr />
+<a id="puralize"></a><h2>pluralize</h2>
+Outputs a string based on the arguments, and whether the input
+value equals <var>1</var>.
+
+If the argument string has no commas, then it will be used only
+if the input value is non-<var>1</var>. If the argument string
+has commas, the string before the first comma is the "singular"
+string, and the string after the first comma is the "plural"
+string. If no argument is passed, the plural string defaults to
+the standard English plural <var>"s"</var>.
+<example>
+<var>dog{{ value|pluralize }}</var> prints <var>dogs</var> if <var>value</var> is plural, and
+<var>dog</var> if it is singular.
+
+<var>fox{{ value|pluralize:"es" }}</var> prints <var>foxes</var> if <var>value</value> is
+plural, and <var>fox</var> if it is singular.
+
+<var>g{{ value|pluralize:"oo,ee" }}se</var> prints <var>geese</var> if <var>value</value> is
+plural, and <var>geese</var> if it is singular.
+</example>
+<hr />
+<a id="random"></a><h2>random</h2>
+Randomly returns a value from the input array.
+<hr />
+<a id="removetags"></a><h2>removetags</h2>
+Removes [X]HTML tags from the input string, based on the
+argument, which is a string of space-separated names of tags to
+be removed. Removal is case-sensitive for the tags.
+<example>
+<var>{{ "&lt;span&gt;&lt;b&gt;&lt;I&gt;Pjango&lt;/I&gt;&lt;b&gt;&lt;span&gt;"|removetags:"b i span" }}</var>
+outputs <var>"&lt;I&gt;Pjango&lt;/I&gt;"</var>.
+</example>
+<hr />
+<a id="rjust"></a><h2>rjust</h2>
+Pads the beginning of the input string with spaces in order to
+obtain the string length indicated in the argument.
+<example>
+<var>{{ "Pjango"|rjust:15 }}</var> outputs <var><spaces>"        Pjango"</spaces></var>
+</example>
+<hr />
+<a id="safe"></a><h2>safe</h2>
+Prevents the variable from being autoescaped by the
+<code>autoescape</code> tag.
+
+In terms of mechanics, the <var>VarComponent</var> class recognizes when
+the <code>safe</code> or <code>escape</code> tags are applied to it, and will ignore
+the autoescaping flag in such circumstances; this mechanic is,
+therefore, uncontrollable from the filter itself.
+<hr />
+<a id="slice"></a><h2>slice</h2>
+Uses Python syntax (<var>index1:index2</var>) to extract a subarray from
+the input array. The input array cannot be associative, and
+this function will throw an error if input is not an array.
+<example>
+<var>{{ value|slice:"2:-1" }}</var> will return the subarray of <var>value</var> that
+starts at index <var>2</var> and ends before the last element.
+</example>
+A more concrete example would be
+<example>
+<var>{{ value|slice:"2:-1" }}</var> outputs the equivalent
+<var>array(2,3,4)</var> if the <var>value</var> is <var>array(0,1,2,3,4,5)</var>.
+</example>
+If the left bound is after the right bound, the function will
+return an empty array.
+<hr />
+<a id="slugify"></a><h2>slugify</h2>
+Removes all non-alphanumeric and non-space characters from the
+input string, and replaces all spaces with hyphens (<var>-</var>).
+<example>
+<var>{{ "(800) 666 9119"|slugify }}</var> outputs <var>800-666-9119</var>.
+</example>
+<hr />
+<a id="stringformat"></a><h2>stringformat</h2>
+Formats the input variable according to the modifier given in
+the argument. The <code>%</code> in front is dropped. Any
+additional modifiers (with percent signs) will result in an
+error.
+<example>
+<var>{{ 3|stringformat:".6f" }}</var> outputs <var>3.000000</var>.
+</example>
+Details about how to format can be found at <a href="http://www.php.net/sprintf">http://www.php.net/sprintf</a>.
+<hr />
+<a id="striptags"></a><h2>striptags</h2>
+Removes complete [X]HTML tags from the input string. A complete
+tag begins with <code>&lt;</code> and ends with <code>&gt;</code>.
+<example>
+<var>{{ "&lt;b&gt;&gt;&lt;&lt;/b&gt;"|striptags }}</var> outputs <var>"&gt;&lt;"</var>.
+</example>
+<hr />
+<a id="time"></a><h2>time</h2>
+Outputs the formatted time string according to the argument.
+Obviously, only time arguments will be accepted. If no argument
+is provided, the defaullt is set by the <code>TIME_FORMAT</code> variable
+in the settings.
+
+Additionally, the input must be reducible to a time.
+<example>
+<var>{{ value|"H:i:s" }}</var> may output <var>"12:34:56"</var>.
+</example>
+<hr />
+<a id="title"></a><h2>title</h2>
+Capitalizes every word in the string, using PHP's <var>ucwords()</var>
+function.
+<example>
+<var>{{ "my first pjango project"|title }}</var> outputs <var>"My First Pjango Project"</var>.
+</example>
+<hr />
+<a id="truncatechars"></a><h2>truncatechars</h2>
+If the input string is longer than the length given in the
+argument, the string will be truncated to end with ellipses,
+represented by 3 periods, to have the length indicated in the
+argument. This new length includes the ellipses.
+<example>
+<var>{{ "Pjango is fun!"|truncatechars:9 }}</var> outputs <var>"Pjango..."</var>.
+</example>
+<hr />
+<a id="truncatewords"></a><h2>truncatewords</h2>
+Outputs the first few words in the string, as indicated by the
+argument; if there are more words left in the string, the next
+word is replaced with ellipses and nothing else is outputted.
+<example>
+<var>{{ "Pjango is fun!"|truncatewords:2 }}</var> outputs <var>"Pjango is ..."</var>.
+</example>
+<hr />
+<a id="truncatewords_html"></a><h2>truncatewords_html</h2>
+Same as <code>truncatewords</code>, except that [X]HTML tags are kept
+track of and preserved outside the word count. Any unclosed
+tags are also automaticall closed. Note that this is
+significantly slower than <code>truncatewords</code>.
+<example>
+<var>{{ "&lt;p&gt;&lt;b&gt;Pjango is fun!&lt;/p&gt;"|truncatewords_html:2 }}</var> outputs
+<var>"&lt;p&gt;&lt;b&gt;Pjango is ...&lt;/b&gt;&lt;/p&gt;"</var>.
+</example>
+<hr />
+<a id="unordered_list"></a><h2>unordered_list</h2>
+Recursively converts the input array into a string suitable for
+direct insertion between <code>&lt;ul&gt;</code> and <code>&lt;/ul&gt;</code> tags.
+<example>
+If <var>value</value> is <var>array("Middle",array(6,7,8),"High",array(9,10,11,12))</var>,
+
+<var>{{ value|unordered_list }}</var>
+
+would output
+
+<code>&lt;li&gt;Middle&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+	&lt;li&gt;6&lt;/li&gt;
+	&lt;li&gt;7&lt;/li&gt;
+	&lt;li&gt;8&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;High&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+	&lt;li&gt;9&lt;/li&gt;
+	&lt;li&gt;10&lt;/li&gt;
+	&lt;li&gt;11&lt;/li&gt;
+	&lt;li&gt;12&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;</code>
+</example>
+<hr />
+<a id="upper"></a><h2>upper</h2>
+Capitalizes all characters in the input string.
+<example>
+<var>{{ "Pjango is fun!"|upper }}</var> outputs <var>"PJANGO IS FUN!"</var>.
+</example>
+<hr />
+<a id="urlize"></a><h2>urlize</h2>
+Converts certain links in the input string into anchored links.
+
+Links must begin with <code>http://</code>, <code>https://</code>, or <code>www.</code>.
+
+Alternatively, links with original top-level domains (<var>.com</var>,
+<var>.edu</var>, <var>.gov</var>, <var>.int</var>, <var>.mil</var>, <var>.net</var>, and <var>.org</var>) will also be converted.
+<example>
+<var>{{ "Google: http://google.com goo.gl"|urlize }}</var> outputs
+
+<code>Google: &lt;a href="http://google.com"&gt;http://google.com&lt;/a&gt; goo.gl</code>
+</example>
+<hr />
+<a id="urlizetrunc"></a><h2>urlizetrunc</h2>
+Works as a combination of the filters <code>urlize</code> and
+<code>truncatechars</code>. Does not truncate the link, only the text that
+is displayed as a hyperlink.
+<example>
+<var>{{ "Google: http://google.com"|urlizetrunc:15 }}</var> outputs
+
+<code>Google: &lt;a href="http://google.com"&gt;http://googl...&lt;/a&gt;</code>
+</example>
+<hr />
+<a id="wordcount"></a><h2>wordcount</h2>
+Returns the number of words found in the input string, where a
+word is defined according to PHP's regular expression rules for
+a word and word character.
+<example>
+<var>{{ "THIS. IS. PJANGOOOO!"|wordcount }}</var> outputs <var>3</var>.
+</example>
+<hr />
+<a id="wordwrap"></a><h2>wordwrap</h2>
+Attempts to wrap each line to have no more than the number of
+characters indicated by the argument while still preserving
+words. Extra-long words will not be broken up.
+<example>
+<var>{{ "THIS. IS. PJANGOOOOOOO!"|wordwrap:10 }}</var> outputs
+
+<code>THIS. IS.<br />
+PJANGOOOOOOO!</code>
+</example>
+<hr />
+<a id="yesno"></a><h2>yesno</h2>
+Outputs a string based on a mapping of <var>true</var>, <var>false</var>,
+and optionally, <var>null</var>.
+
+The argument string should be in the format of
+<var>"(iftrue),(iffalse/ifnull)"</var> or
+<var>"(iftrue),(iffalse),(ifnull)"</var>. If no argument is
+provided, the default is "yes,no,maybe".
+
+Note that checks for false and null are strict equality checks.
+This means that <var>0</var> and the empty string will evalue to
+<var>true</var> for this filter.
+<example>
+<var>{{ ""|yesno }}</var> outputs <var>"yes"</var>.
+</example>
+CONTENT>>>

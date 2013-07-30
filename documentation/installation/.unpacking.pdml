@@ -1,0 +1,21 @@
+<<<TITLE
+Unpacking and Installing
+TITLE>>>
+
+<<<SHORT
+Unpacking
+SHORT>>>
+
+<<<CONTENT
+The easiest way to unpack, install, and configure your Pjango
+project is to navigate to the root directory of your new Pjango
+project in your web browser. The <var>index.php</var> will
+guide you through the process.
+
+If you wish to unpack and install manually, navigate to the
+subdirectory named <var>pjango-(version_number)</var> and copy the
+contents thereof into your projecct root directory. Note that
+you will end up overwriting the prepackaged <var>index.php</var> file, and
+will not be able to use it to complete installation or
+configuration.
+CONTENT>>>

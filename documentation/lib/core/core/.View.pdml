@@ -1,0 +1,69 @@
+<<<CLASS
+View
+CLASS>>>
+
+<<<SHORT
+View
+SHORT>>>
+
+<<<CONTENT
+The View class is responsible for parsing the loaded template
+files into the tree-like component structure, and for sending
+the signal to render.
+
+To load a template '<var>base.html</var>' and render it, we can
+write:
+
+<code>$view=new View("base.html");<br />
+$view->display();</code>
+
+We can also include variables to be used in the template:
+
+<code class="block">$view->display($variable_array);</code>
+
+The identifier for each variable is its key in the array, so if
+
+<code>$variable_array["FOO"]=123;</code>
+
+then <code>{{ foo }}</code> in the template would have the
+value of <code>123</code>.
+CONTENT>>>
+
+<<<VARIABLES
+<var>private root</var> -- Initialized null, contains the root
+  component.
+
+<var>private text</var> -- Initialized null, contains the string
+  to parse.
+VARIABLES>>>
+
+<<<FUNCTIONS
+<var>__construct($input=null,$isFile=true)</var>
+  -- Loads <var>$input</var> as either text or file, based on <var>$isFile</var>.
+
+<var>createComponents()</var>
+  -- Parses <var>text</var> to generate the component tree
+     structure. Stores root in <var>root</var>, and returns it.
+
+<var>display($args=array())</var>
+  -- Makes call to <var>render($args)</var> and prints result.
+
+<var>getText()</var>
+  -- Returns the <var>text</var> instance variable's contents.
+
+<var>load($input)</var>
+  -- Attempts to load <var>$input</var> as file, falling back
+     to loading as text upon failure.
+
+<var>load_file($file)</var>
+  -- Searches through all views for <var>$file</var>, and
+     stores the contents in <var>text</var>.
+
+<var>load_text($text)</var>
+  -- Sets <var>text</var> as <var>$text</var>.
+
+<var>render($args=array())</var>
+  -- Makes call to <var>createComponents</var>, renders <var>root</var>,
+     passes the rendered string through the middlewares, and
+     returns the result.
+FUNCTIONS>>>

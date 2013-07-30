@@ -1,0 +1,19 @@
+<<<TITLE
+Variables Set-Up and Configuration
+TITLE>>>
+
+<<<SHORT
+Variables Configuration
+SHORT>>>
+
+<<<CONTENT
+As with unpacking and installing, the easiest way to configure
+your variables is to use the built-in <var>index.php</var> page.
+
+However, if you wish to configure Pjango on your own, manualy,
+navigate to the <var>lib</var> directory and open the <var>settings.php</var> file.
+Here, you will find most of the configuration variables that
+you will need to update. You will also need to update the
+<var>(WEBROOT)</var> strings in <var>.htaccess</var>. Upon
+updating, your configuration will be complete.
+CONTENT>>>

@@ -1,0 +1,61 @@
+<<<TITLE
+Tags
+TITLE>>>
+
+<<<SHORT
+Tags
+SHORT>>>
+
+<<<CONTENT
+Tags comprise the programmatic sections of the template. Each
+block is comprehended as a special set of commands to the PHP
+scripting language, and it is used to emulate a scripting
+environment within the context of the template.
+
+Unlike filters, which accompany variables, and middleware,
+which postprocess your output, tags can do a variety of things,
+such as loops, conditionals, commenting, etc.
+
+In order to give tags such versatility, tag usage is not very
+strict. Like HTML, which has open and close tags, as well as
+attributes, template tags can be block tags or self-closing,
+and can have arguments passed into them.
+
+A tag is denoted by curly braces and percent signs. For
+example, this is the opening tag of an <var>if</var>-block;
+
+<var>{% if 1 != 42 %}</var>
+
+Note that we have passed in three arguments into the tag: <var>1</var>,
+<var>!=</var>, and <var>42</var>. Arguments for tags are space-separated, but
+strings that contain spaces will not be separated, e.g. <var>"h i"</var>.
+
+Since <code>if</code> is a block tag, it must be explicitly
+closed with an ending tag. Ending tags are always of the form,
+<code>end(tagname)</code>. Thus, this tag closes the <var>if</var>-block:
+
+<var>{% endif %}</var>
+
+There are also tags that represent blocks, but are closed in
+irregular fashions. The <code>else</code> tag is such a tag.
+Since it is part of the <var>if</var>-block, it should be closed by an
+<var>endif</var>.
+
+Finally, there are also tags that are unclosed, such as the
+<var>extends</var> tag. Since it has no functionality inside a
+block, the <var>extends</var> tag remains unclosed, and does
+not need a corresponding <var>endextends</var> tag.
+
+Note that tags closed in irregular fashions are, in some sense,
+a subcategory of unclosed tags, since they are not closed, with
+respect to itself.
+
+While the built-in library of tags is sufficient for most
+purposes, it may be helpful to customize your own tags. This is
+as simple as extending the <a href="AbstractTag.htm">AbstractTag</a> class, implementing the
+<var>render</var> function, and registering the tag with the
+<var>__SITE</var> class.
+
+Details about <a href="AbstractTag.htm">the AbstractTag class</a>, <a href="customTags.htm">custom tags</a> and
+<a href="builtins.htm">built-in tags</a> are available.
+CONTENT>>>

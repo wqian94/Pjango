@@ -1,0 +1,15 @@
+<<<TITLE
+Including Library Files
+TITLE>>>
+
+<<<SHORT
+Including Library Files
+SHORT>>>
+
+<<<CONTENT
+Including library files in the <var>lib/</var> folder requires the use of
+an <var>INCLUDE</var> file. The include file contains a directive on each
+line, and each directive is a filename to include. Furthermore,
+the special directive <var>*</var> will include all files and
+subdirectories for that directory.
+CONTENT>>>

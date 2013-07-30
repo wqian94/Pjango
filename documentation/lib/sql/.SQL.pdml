@@ -1,0 +1,76 @@
+<<<CLASS
+SQL
+CLASS>>>
+
+<<<SHORT
+SQL Class
+SHORT>>>
+
+<<<CONTENT
+The SQL class represents a condensed API for basic SQL queries
+and data fetches. By internally using <var>mysql_*</var> or <var>mysqli_*</var>
+based on the PHP version number, it allows for one set of API
+to be used without worrying over deprecation and backsupport.
+
+Moreover, the SQL class stores each and every connection that
+is made, and allows for easy toggling between databases using
+identification numbers.
+
+Additionally, the SQL class provides the option of escaping the
+input by using a boolean indicator, allowing for long-term
+toggling between escaping and not escaping the input.
+CONTENT>>>
+
+<<<STATIC_VARIABLES
+<var>private handles</var> -- Initialized as an empty array, used to store
+  the handles of the SQL connections made.
+
+<var>private latest</var> -- Initialized as <var>null</var>, records the index of
+  the currently-active connection handle.
+
+<var>private escape</var> -- Initialized as <var>true</var>, is the boolean
+  indicator for whether to escape the input during querying.
+
+<var>private result</var> -- Initialized as <var>null</var>, stores the result of
+  the latest query, regardless of handle.
+STATIC_VARIABLES>>>
+
+<<<FUNCTIONS
+<var>public static connect($host,$user,$passwd,$db)</var>
+  -- Establishes a connecion to <var>$host</var>, using username <var>$user</var>,
+     with password <var>$passwd</var>, and selecting database <var>$db</var> and
+     stores this connection in the <var>handles</var> array for use.
+     Automatically sets <var>latest</var> to be the index of the new
+     connection, and returns the connection established.
+
+<var>public static escape($escape=true)</var>
+  -- Sets the <var>escape</var> boolean indicator.
+
+<var>public static fetch($sqlresult=null)</var>
+  -- Uses <var>*_fetch_array()</var> to fetch the next result from the
+     result resource. If the parameter is <var>null</var>, uses the static
+     variable <var>result</var> instead. The fetched array is returned.
+
+<var>public static handle()</var>
+  -- Returns the currently selected handle; that is,
+     <var>handles[latest]</var>.
+
+<var>public static index()</var>
+  -- Returns the value of <var>latest</var>.
+
+<var>public static query($query,$args=array(),$escape=null)</var>
+  -- Uses <var>$query</var> as a formatted string to include the arguments
+     provided in <var>$args</var>, which are escaped based on the <var>$escape</var>
+     parameter. If <var>$escape</var> is <var>null</var>, uses the static variable
+     <var>escape</var> instead. The result is stored in <var>result</var> and is
+     returned.
+
+<var>public static result()</var>
+  -- Returns the latest <var>result</var> from a query.
+
+<var>public static select($id)</var>
+  -- Selects the database connection with identifier <var>$id</var>. A
+     negative identifier indicates offset from the last handle,
+     going backwards. Will throw an error if the identifier is
+     out of bounds.
+FUNCTIONS>>>

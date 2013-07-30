@@ -1,0 +1,26 @@
+<<<TITLE
+Filters
+TITLE>>>
+
+<<<SHORT
+Filters
+SHORT>>>
+
+<<<CONTENT
+Filters are essentially in-template functions applied to
+variables. For example, to apply the filter <code>add</code> to a variable
+called <code>value</code>, we would write
+
+<code>{{ value|add:2 }}</code>
+
+and the engine would replace that particular string with the
+result of <code>value+2</code>.
+
+Pjango, like Django, provides for the ability to customize your
+own filters, on top of the preexisting filters. This is done by
+extending the <var>AbstractFilter</var> class and registering the filter
+with the <var>__SITE</var> class.
+
+Details about <a href="AbstractFilter.htm">the AbstractFilter class</a>, <a href="customFilters.htm">custom filters</a> and
+<a href="builtins.htm">built-in filters</a> are available.
+CONTENT>>>

@@ -1,0 +1,50 @@
+<<<TITLE
+Using SQL
+TITLE>>>
+
+<<<SHORT
+SQL Usage
+SHORT>>>
+
+<<<CONTENT
+Each SQL database connection to be established should be listed
+in <var>settings.php</var> using the <var>$SQL_DATABASES</var> variable:
+<example>
+<code class="block">
+$SQL_DATABASES=array(<br />
+<spaces>  </spaces>array(<br />
+<spaces>    </spaces>"host"=>"hostname",<br />
+<spaces>    </spaces>"user"=>"username",<br />
+<spaces>    </spaces>"passwd"=>"password",<br />
+<spaces>    </spaces>"db"=>"databasename",<br />
+<spaces>    </spaces>),<br />
+<spaces>  </spaces>);
+</code>
+</example>
+They will then be connected in that order, with the last entry
+being the active one.
+
+To query, just call <var>SQL::query()</var>. The most basic query is just
+<var>SQL::query($querystring);</var>, which will send the input string as
+the query, raw; any string formatting characters will be left
+as-is (e.g. <code>%f</code> will be sent as <code>%f</code>).
+
+However, if an argument array with at least one element is
+provided (<var>SQL::query($querystring,$arguments);</var>), then the input
+string will be treated as a formatted string, and the arguments
+will be provided as formatting arguments using PHP's <var>vsprintf()</var>
+function.
+
+Each query can also have escaping turned on or off for just
+that query by passing in <var>true</var> as the third argument (to enable
+escaping), or <var>false</var> (to disable escaping).
+
+To retrieve each database match in array form, call
+<var>SQL::fetch()</var>. This will use fetch the next match from the
+result resource provided, or from the internally stored <var>result</var>
+static variable if the parameter is <var>null</var> or not provided.
+
+At any time, the current connection and query result can be
+retrieved using the <var>SQL::handle()</var> and <var>SQL::result()</var> functions,
+respectively. This allows for custom SQL calls, if needed.
+CONTENT>>>

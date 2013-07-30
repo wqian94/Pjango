@@ -1,0 +1,43 @@
+<<<CLASS
+Token
+CLASS>>>
+
+<<<SHORT
+Token
+SHORT>>>
+
+<<<CONTENT
+The Token class is the most primitive breakdown of the template
+file. The Token itself is a container of the raw text it
+represents (<var>content</var>) and the identified type of that raw
+content (<var>type</var>).
+CONTENT>>>
+
+<<<STATIC_VARIABLES
+<var>const TAG</var> -- Has value "tag".
+
+<var>const TXT</var> -- Has valule "txt".
+
+<var>const VAR</var> -- Has value "var".
+STATIC_VARIABLES>>>
+
+<<<VARIABLES
+<var>private content</var> -- The raw string that this Token
+  represents.
+
+<var>private type</var> -- The type of the content represented by
+  this Token. Takes on values of Token::TAG, Token::VAL,
+  and Token::TXT.
+VARIABLES>>>
+
+<<<FUNCTIONS
+<var>__construct($str)</var>
+  -- Constructor function, takes in <var>content</var> string
+     and assigns the the appropriate type to <var>type</var>.
+
+<var>getContent()</var>
+  -- Returns the raw content string for this Token.
+
+<var>getType()</var>
+  -- Returns the type of this Token -- the value of <var>type</var>.
+FUNCTIONS>>>

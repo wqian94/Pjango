@@ -1,0 +1,34 @@
+<<<CLASS
+abstract AbstractComponent
+CLASS>>>
+
+<<<SHORT
+AbstractComponent
+SHORT>>>
+
+<<<CONTENT
+The AbstractComponent class is the abstract parent class of all
+the other component classes.
+CONTENT>>>
+
+<<<STATIC_VARIABLES
+<var>const TAG</var> -- Has value "TAG".
+
+<var>const TXT</var> -- Has value "TXT".
+
+<var>const VAR</var> -- Has value "VAR".
+STATIC_VARIABLES>>>
+
+<<<VARIABLES
+<var>public data</var> -- Initialized to <var>array()</var>,
+  placeholder for any additional data that needs to be stored
+  in the component.
+
+<var>private token</var> -- The Token that this component represents.
+VARIABLES>>>
+
+<<<FUNCTIONS
+<var>getToken()</var> -- Returns the represented Token.
+
+<var>setToken($tok)</var> -- Sets the value of <var>token</var>.
+FUNCTIONS>>>

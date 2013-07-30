@@ -1,0 +1,31 @@
+<<<TITLE
+System Requirements
+TITLE>>>
+
+<<<SHORT
+System Requirements
+SHORT>>>
+
+<<<CONTENT
+<h2>Basic Requirements</h2>
+Basic requirements to run Pjango are:
+<ul>
+<li><iftxt>  -</iftxt>Web server</li>
+<li><iftxt>  -</iftxt>Server read/write access for the working web directory</li>
+<li><iftxt>  -</iftxt>PHP engine</li>
+<li><iftxt>  -</iftxt>.htaccess engine</li>
+</ul>
+<h2>Recommended Settings</h2>
+It is recommended that you have the following:
+<ul>
+<li><iftxt>  -</iftxt>PHP >=5.3.0</li>
+<li><iftxt>  -</iftxt>SQL server access</li>
+<li><iftxt>  -</iftxt>UNIX/LINUX environment</li>
+</ul>
+<h2>Developer Tools</h2>
+If you wish to develop new modules, tags, filters, etc. for
+Pjango, you should have the following:
+<ul>
+<li><iftxt>  -</iftxt>Makefile engine</li>
+</ul>
+CONTENT>>>

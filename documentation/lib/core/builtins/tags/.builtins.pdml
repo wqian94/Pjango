@@ -1,0 +1,613 @@
+<<<TITLE
+Built-in Tag Reference
+TITLE>>>
+
+<<<SHORT
+Built-in Tags
+SHORT>>>
+
+<<<ANCHORS
+ajax
+ajax
+autoescape
+autoescape
+block
+block
+comment
+comment
+csrf_token
+csrf_token
+css
+css
+css_ext
+css_ext
+cycle
+cycle
+extends
+extends
+filter
+filter
+firstof
+firstof
+for...empty
+for
+if...elif...else
+if
+ifequal
+ifequal
+ifnotequal
+ifnotequal
+include
+include
+js
+js
+js_ext
+js_ext
+load*
+load
+now
+now
+regroup
+regroup
+replace
+replace
+spaceless
+spaceless
+ssi
+ssi
+templatetag
+templatetag
+verbatim
+verbatim
+widthratio
+widthratio
+with
+with
+ANCHORS>>>
+
+<<<CONTENT
+<div style="margin:1em 0;">References for the built-in tags are found below. Examples,
+where appropriate, may be provided.
+</div> 
+<hr />
+<a id="ajax"></a><h2>ajax</h2>
+Include the built-in AJAX library. If multiple <var>ajax</var> tags are
+used, only the first one will include the library, since any
+inclusions after that will be extraneous.
+
+The AJAX library is included as an independent block of JS, and
+is enclosed between its own <var>&lt;script&gt;</var> tags. If you wish to
+include the library inside a JS block, use the <var>inline</var> flag
+(<code>{% ajax inline %}</code>) to suppress the <var>&lt;script&gt;</var> tags.
+
+Note: This tag is not part of Django's built-in library.
+<hr />
+<a id="autoescape"></a><h2>autoescape</h2>
+Argument must be either <var>"on"</var> or <var>"off"</var>.
+
+If on, sets the flag for autoescaping variables that do not
+have the safety flag attached to them from the <a href="../filters/builtins.htm#safe"><code>safe</code></a> or
+<a href="../filters/builtins.htm#escape"><code>escape</code></a> filters. This is done by setting the flag to be <var>true</var>.
+
+If off, sets the flag to be <var>false</var>. Will only affect children of
+the tag, so can be nested in itself to produce escaped and
+unescaped effects.
+<example>
+If <var>value</var> is <var>"&lt;"</var>,
+
+<code class="block bordered">
+{% autoescape on %}<br />
+{{ value }}<br />
+{% autoescape off %}<br />
+{{ value }}<br />
+{% endautoescape %}<br />
+{{ value }}<br />
+{{ value|safe }}<br />
+{% endautoescape %}
+</code>
+<br />
+outputs
+
+<code class="block bordered">
+<br />
+&amp;lt;
+
+&lt;
+
+&amp;lt;<br />
+&lt;
+
+</code>
+</example>
+Note that this is equivalent to applying the <code>escape</code> filter to
+each "unsafe" variable.
+<hr />
+<a id="block"></a><h2>block</h2>
+Defines a block that can be replaced in child templates. See
+Django's <a href="https://docs.djangoproject.com/en/dev/topics/templates/#template-inheritance" target="_new" rel="nofollow">Template Inheritance Documentation</a> for more
+information.
+<hr />
+<a id="comment"></a><h2>comment</h2>
+A block comment tag; everything within is not rendered at all.
+<hr />
+<a id="csrf_token"></a><h2>csrf_token</h2>
+Generates and inserts a CSRF token at its location in the
+template. Used for CSRF protection; see <a href="https://docs.djangoproject.com/en/dev/ref/contrib/csrf/" target="_new" rel="nofollow">Cross Site Request
+Forgeries</a> in the Django documentation for more information.
+<hr />
+<a id="css"></a><h2>css</h2>
+Indicates an inline-CSS block, and will automatically write
+<var>&lt;style&gt;</var> tags around the contents of the tag.
+<example>
+Using this tag will output something like:
+<code class="block bordered">
+&lt;style type="text/css"&gt;<br />
+(contents)<br />
+&lt;/style&gt;
+</code>
+</example>
+Note: This tag is not part of Django's built-in library.
+<hr />
+<a id="css_ext"></a><h2>css_ext</h2>
+Generates text for including an external style sheet, whose
+link is provided in the argument. That is, the output tag will
+have <var><span class="nowrap">href="(argument)"</span></var>.
+<example>
+Using this tag will output something like:
+<code class="block bordered">
+&lt;link rel="stylesheet" type="text/css" href="(argument)" /&gt;
+</code>
+</example>
+Note: This tag is not part of Django's built-in library.
+<hr />
+<a id="cycle"></a><h2>cycle</h2>
+Cycles through the values in the argument each time the tag is
+encountered. These values can be either variables, strings, or
+numbers.
+<example>
+If <var>range</var> is <var>array(0,1,2,3,4)</var>, then
+
+<code class="block bordered">
+{% for i in range %}<br />
+{% cycle "1" 2 %}<br />
+{% endfor %}
+</code>
+<br />
+outputs
+
+<code class="block bordered">
+<br />
+1
+
+2
+
+1
+
+2
+
+1
+
+</code>
+</example>
+Like with Django, you can also use the <code>as</code> directive to store
+the cycled values into local-scope variables.
+<example>
+Same range as above,
+
+<code class="block bordered">
+{% for i in range %}<br />
+{% cycle "1" 2 as v silent %}<br />
+{{ v }}<br />
+{% cycle v %}<br />
+{% endfor %}
+</code>
+<br />
+outputs
+
+<code class="block bordered">
+<br />
+1<br />
+2
+
+1<br />
+2
+
+1<br />
+2
+
+1<br />
+2
+
+1<br />
+2
+
+</code>
+</example>
+As this example also shows, the <code>silent</code> directive suppresses
+outputting the value that is cycled through. This works even if
+the cycle's value isn't stored in a variable.
+
+Additionally, note that, once a cycle is anchored to a
+variable, future cycles can simply call <code>{% cycle (var) %}</code> to
+cycle through that variable again, as if that tag had been
+encountered again.
+<hr />
+<a id="extends"></a><h2>extends</h2>
+Inherits a parent template based on the argument.
+
+If the argument is a string literal, it will be treated as the
+relative path location of the parent template; if it is a
+variable, it will first be evaluated into a string literal that
+represents the relative locaation of the parent template.
+
+See Django's <a href="https://docs.djangoproject.com/en/dev/topics/templates/#template-inheritance" target="_new" rel="nofollow">Template Inheritance Documentation</a> for more
+information.
+<hr />
+<a id="filter"></a><h2>filter</h2>
+Applies the filter(s) to the contents of the tag. Like with
+variables, filters can be piped through each other.
+<example>
+<code class="block bordered">
+{% filter lower|capfirst %}<br />
+I PJANGO ALL DAY!<br />
+{% endfilter %}
+</code>
+<br />
+outputs
+
+<code class="block bordered">
+<br />
+I pjango all day!
+
+</code>
+</example>
+<hr />
+<a id="firstof"></a><h2>firstof</h2>
+Prints the first variable argument that is not <var>0</var>, <var>false</var>, or the
+empty string (essentially prints first <var>true</var> variable argument).
+This means that variables that have not been defined yet, which
+loosely evaluates to <var>false</var>, will also be skipped.
+
+It is also possible to provide a "fallback" string, which will
+be used if nothing before it is used. This string must be in
+string literals (i.e. between double quotes).
+<example>
+<code class="block bordered">
+{% firstof var1 var2 var3 "fallback" %}
+</code>
+<br />
+is equivalent to
+
+<code class="block bordered">
+{% if var1 %}<br />
+{{ var1 }}<br />
+{% elif var2 %}<br />
+{{ var2 }}<br />
+{% elif var3 %}<br />
+{{ var3 }}<br />
+{% else %}<br />
+fallback<br />
+{% endif %}
+</code>
+</example>
+<hr />
+<a id="for"></a><h2>for...empty</h2>
+Loops over each element in the array, which can be either
+associative or a list. Syntax is Python-style, and filtering
+the array is permitted, provided that the final result is also
+an array.
+<example>
+Displaying the elements of a list called <code>lang_list</code>:
+
+<code class="block bordered">
+{% for lang in lang_list %}<br />
+{{ lang }}<br />
+{% endfor %}
+</code>
+<br />
+The iteration order can be reversed using the <code>reversed</code>
+directive:
+
+<code class="block bordered">{% for obj in list reversed %}</code>
+<br />
+If your array contains array elements, you can unpack them by
+using comma-separated identifiers:
+
+<code class="block bordered">{% for obj1,obj2,obj3 in list %}</code>
+<br />
+Take care not to put spaces around the commas separating the
+identifiers; any spaces will be treated as argument delimiters,
+and the framework will throw an error.
+
+Similarly, you can also access key-value pairs in associative
+arrays by appending the flag <var>".items"</var> to the array identifier:
+
+<code class="block bordered">{% for key,value in array.items %}</code>
+<br />
+Again, take care not to include spaces between the array name
+and <var>".items"</var>, as they will be interpreted differently.
+
+It is also possible to specify some text to be displayed if the
+array is empty by using the <var>{% empty %}</var> tag:
+
+<code class="block bordered">
+{% for lang in lang_list %}<br />
+{{ lang }}<br />
+{% empty %}<br />
+No languages!<br />
+{% endfor %}
+</code>
+<br />
+The for loop also sets some variables specific to the for loop.
+These are all accessed as if they were elements of an array
+called <code>forloop</code>.
+
+<var>forloop.counter</var>
+  -- The current iteration of the loop (1-indexed).<br />
+<var>forloop.counter0</var>
+  -- The current iteration of the loop (0-indexed).<br />
+<var>forloop.revcounter</var>
+  -- The number of iterations counting from the end of the loop
+     (1-indexed).<br />
+<var>forloop.revcounter0</var>
+  -- The number of iterations counting from the end of the loop
+     (0-indexed).<br />
+<var>forloop.first</var>
+  -- Evalutes to <code>true</code> if this is the first iteration through
+     the loop.<br />
+<var>forloop.last</var>
+  -- Evalutes to <code>true</code> if this is the last iteration through
+     the loop.<br />
+<var>forloop.parentloop</var>
+  -- References the variables in the parent loop, if the
+     current loop is nested. Defaults to <code>null</code> if there is no
+     parent loop.
+</example>
+<hr />
+<a id="if"></a><h2>if...elif...else</h2>
+Sets conditional blocks; syntax is Python-like, and filters are
+permitted on the arguments.
+<example>
+<code class="block bordered">
+{% if var %}
+</code>
+<br />
+Will evaluate to a <code>true</code> conditional if <code>var</code> exists, and is
+not equivalent to <code>false</code> (i.e. not <var>0</var>, <var>false</var>, or <var>""</var>).
+
+Additionally, the operators <var>not</var>, <var>and</var>, <var>or</var>, <var>in</var>, <var>==</var>, <var>!=</var>, <var>===</var>, <var>!==</var>,
+<var>&gt;</var>, <var>&lt;</var>, <var>&gt;=</var>, and <var>&lt;=</var> can be used to form more complex boolean
+expressions.
+
+If you wish to form complex operations involving group, set the
+parentheses apart from the text around it, e.g.
+
+<code class="block bordered">
+{% if var1 and ( not ( var2 or not var3 ) ) %}
+</code>
+<br />
+An <var>elif</var> tag can be used inside an <var>if</var>-block, provided that it is
+before an <var>else</var> tag.
+
+An <var>else</var> tag can be used inside an <var>if</var>-block, but only if it is
+the last <var>if-elif-else</var> tag in the block. The <var>if</var>-block should be
+ended right after the contents of the <var>else</var> tag.
+
+A generic <var>if-elif-else</var> block:
+
+<code class="block bordered">
+{% if conditional1 %}<br />
+(contents1)<br />
+{% elif conditional2 %}<br />
+(contents2)<br />
+{% elif conditional3 %}<br />
+(contents3)<br />
+&vellip;<br />
+{% else %}<br />
+(else contents)<br />
+{% endif %}
+</code>
+</example>
+<hr />
+<a id="ifequal"></a><h2>ifequal</h2>
+A macro taking two arguments. Equivalent to
+<code>{% if arg1 == arg2 %}</code>
+
+As with normal conditionals, filters are permitted.
+
+Furthermore, the tag can also have an <code>else</code> tag associated
+with it, but not <code>elif</code> tags.
+<hr />
+<a id="ifnotequal"></a><h2>ifnotequal</h2>
+A macro taking two arguments. Equivalent to
+<code>{% if arg1 != arg2 %}</code>
+
+As noted above, filters are permitted, and the tag can also
+have an <code>else</code> tag associated with it, but not <code>elif</code> tags.
+<hr />
+<a id="include"></a><h2>include</h2>
+Includes another template file at the tag's location in the
+current template. As with <code>extends</code>, the argument can be either
+a string literal or a variable, but must be the path to the
+other template.
+
+Unlike Django's version of this tag, Pjango's does not allow
+the <code>with</code> directive for customizing the variables to be used
+in the included template.
+<hr />
+<a id="js"></a><h2>js</h2>
+Indicates a JavaScript block, and will insert the rendered
+contents of the tag between appropriate <var>&lt;script&gt;</var> tags.
+<example>
+The output will resemble:
+<code class="block bordered">
+&lt;script type="text/javascript"&gt;/*&lt;!--*/<br />
+(contents)<br />
+/*--&gt;*/&lt;/script&gt;
+</code>
+</example>
+Note: This tag is not part of Django's built-in library.
+<hr />
+<a id="js_ext"></a><h2>js_ext</h2>
+Outputs text to include the JavaScript file based on the path
+provided in the argument.
+<example>
+The output will resemble:
+<code class="block bordered">
+&lt;script src="(argument)"&gt;&lt;/script&gt;
+</code>
+</example>
+Note: This tag is not part of Django's built-in library.
+<hr />
+<a id="load"></a><h2>load</h2>
+It should be noted, first of all, that Pjango does <span class="italic">not</span> have
+this tag built-in; however, its inclusion here is to notify
+users to the alternative.
+
+Instead of including libraries on the "client side", the custom
+libraries should be included server-side in the PHP file, as
+this will appropriately register the tags and filters. This is
+Pjango's alternative to the <code>load</code> tag.
+
+While this takes away from the client-side, it also introduces
+more flexibility with different versions of tags and filters,
+since the decision is now made server-side.
+<hr />
+<a id="now"></a><h2>now</h2>
+Formats the current server time according to the format in the
+argument. See <a href="http://php.net/date">http://php.net/date</a> for specifier information.
+<example>
+<code class="block bordered">The {% now "jS o\f F, Y" %}</code>
+<br />
+Might output <var>"The 18th of July, 2013"</var>.
+</example>
+<hr />
+<a id="regroup"></a><h2>regroup</h2>
+Regroups a list of associative arrays based on equality of
+values of the key given in the argument. Syntactically, this is
+used as <code>{% regroup (list) by (keyname) as (varname) %}</code>,
+where <var>list</var> is the list being regrouped, <var>keyname</var> is a
+non-literal of the key being used (e.g. <var>key</var> instead of <var>"key"</var>),
+and <var>varname</var> is the variable that will store the regrouped list.
+<hr />
+<a id="replace"></a><h2>replace</h2>
+A tag not in Djagno's built-in library, this replaces all
+instances of the first argument with the second argument in the
+final rendered text. The arguments can be variables.
+<example>
+<code class="block bordered">
+{% replace var1 "choo" %}<br />
+{{ var1 }}, {{ var1 }}!<br />
+{% endreplace %}
+</code>
+<br />
+outputs
+
+<code class="block bordered">
+<br />
+choo, choo!
+
+</code>
+</example>
+<hr />
+<a id="spaceless"></a><h2>spaceless</h2>
+Removes extraneous whitespace between tags, but not inside them
+as contents.
+<example>
+<code class="block bordered">
+{% spaceless %}<br />
+&lt;div&gt;<spaces>    </spaces>&lt;h2&gt;<spaces>    </spaces>TEXT<spaces>    </spaces>&lt;/h2&gt;&lt;/div&gt;<br />
+{% endspaceless %}
+</code>
+<br />
+outputs
+
+<code class="block bordered">
+<br />
+&lt;div&gt;&lt;h2&gt;<spaces>    </spaces>TEXT<spaces>    </spaces>&lt;/h2&gt;&lt;/div&gt;
+
+</code>
+</example>
+<hr />
+<a id="ssi"></a><h2>ssi</h2>
+Includes the contents of the file given as the argument at the
+tag's location in the template. The argument can be a variable
+or a string literal, and if a second argument is given as
+<var>parsed</var>, then the file will be rendered as a template, and its
+rendered output inserted instead.
+<example>
+<code class="block bordered">
+{% ssi external_file_path parsed %}
+</code>
+</example>
+<hr />
+<a id="templatetag"></a><h2>templatetag</h2>
+Prints strings used for template tags and filters. This is
+compensation for the inability fo escape special characters in
+the template.
+
+<var>{%</var> -- <var>openblock</var><br />
+<var>%}</var> -- <var>closeblock</var><br />
+<var>{{</var> -- <var>openvariable</var><br />
+<var>}}</var> -- <var>closevariable</var><br />
+<var>{</var> -- <var>openbrace</var><br />
+<var>}</var> -- <var>closebrace</var><br />
+<var>{#</var> -- <var>opencomment</var><br />
+<var>#}</var> -- <var>closecomment</var>
+<example>
+<code class="block bordered">{% templatetag openblock %}</code>
+<br />
+outputs
+
+<code class="block bordered">{%</code>
+</example>
+<hr />
+<a id="verbatim"></a><h2>verbatim</h2>
+Outputs the contents of this tag without rendering any special
+tags, variables, etc.
+
+Including an argument gives the tag a name, which only a
+corresponding end tag with the same name can close.
+<example>
+<code class="block bordered">
+{% verbatim %}<br />
+{{ var }}<br />
+{% endverbatim %}<br />
+{% verbatim block %}<br />
+{% endverbatim %}<br />
+{% endverbatim block %}
+</code>
+<br />
+outputs
+
+<code class="block bordered">
+<br />
+{{ var }}
+
+<br />
+{% endverbatim %}
+
+</code>
+</example>
+<hr />
+<a id="widthratio"></a><h2>widthratio</h2>
+Scales numbers based on a calculated ratio.
+
+Taking exactly three arguments, the tag has the general syntax:
+<code>{% widthratio curr_value max_value max_width %}</code>, which will
+replace the tag with the value <var>curr_value/max_value*max_width</var>,
+using floats.
+<hr />
+<a id="with"></a><h2>with</h2>
+Caches a local variable with a certain value. There are two
+syntaxes associated with this tag.
+
+<code>{% with var1=val1 var2=val2 ... %}</code> will set the indicated
+values to variables with the name as given. This can locally
+change the value of a preexisting variable, but only within the
+scope of the tag (i.e. within the tag).
+
+An older syntax in Django, which is backsupported here, only
+allows the assignment of one variable at a time, with the
+syntax <code>{% with (varname) as (value) %}</code>.
+CONTENT>>>

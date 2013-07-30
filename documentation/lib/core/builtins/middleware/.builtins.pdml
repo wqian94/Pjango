@@ -1,0 +1,31 @@
+<<<TITLE
+Built-in Middleware Reference
+TITLE>>>
+
+<<<SHORT
+Built-in Middleware
+SHORT>>>
+
+<<<ANCHORS
+AutoTrimMiddleware
+AutoTrimMiddleware
+CsrfMiddleware
+CsrfMiddleware
+ANCHORS>>>
+
+<<<CONTENT
+<div style="margin:1em 0;">References for the built-in middleware are found below.
+</div> 
+<hr />
+<a id="AutoTrimMiddleware"></a><h2>AutoTrimMiddleware</h2>
+Preprocessing: None.
+
+Rendering: Removes all carriage returns (<code>\r</code>), line feeds, (<code>\n</code>), and
+tabs (<code>\t</code>) from the input.
+<hr />
+<a id="CsrfMiddleware"></a><h2>CsrfMiddleware</h2>
+Preprocessing: If <var>POSTDATA</var> exists, checks CSRF token for
+security. Otherwise, no action.
+
+Rendering: None. Returns inputted text.
+CONTENT>>>

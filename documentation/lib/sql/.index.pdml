@@ -1,0 +1,20 @@
+<<<TITLE
+SQL
+TITLE>>>
+
+<<<SHORT
+SQL
+SHORT>>>
+
+<<<CONTENT
+The SQL library is provided to make SQL querying more seamless
+and convenient. Most notable is the <var>SQL</var> class, used to help
+organize SQL handles, as well as to provide an easy transition
+from PHP's <var>mysql_*</var> to the newer <var>mysqli_*</var> API.
+
+However, any settings, such as hostnames, usernames, passwords,
+and database selections should be done in <var>settings.php</var>, using
+the <var>$SQL_DATABASES</var> variable.
+
+More information 
+CONTENT>>>

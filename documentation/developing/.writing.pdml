@@ -1,0 +1,148 @@
+<<<TITLE
+Writing Documentation
+TITLE>>>
+
+<<<SHORT
+Documentation
+SHORT>>>
+
+<<<ANCHORS
+PDML Files
+pdml
+CONTENT Blocks
+contentblocks
+Class Blocks
+classblocks
+ANCHORS>>>
+
+<<<CONTENT
+Pjango's documentation is rendered using a basic engine written
+in PHP. This is the <var>documentationCompiler.php</var> script. Along
+with the script, the documentation also has its own markup
+language, designed specifically for writing Pjango
+documentation, called PDML (Pjango Documentation Markup
+Language).
+<a id="pdml"></a>
+<h2>PDML Files</h2>
+All PDML files have the <var>.pdml</var> extension, and are preceded with
+a "." (period). The engine then generates a <var>.txt</var> and a <var>.htm</var>
+for each PDML file found, based on the filename.
+<example>
+A file named <var>.index.pdml</var> will generate <var>index.txt</var> and <var>index.htm</var>.
+</example>
+The PDML engine script will generate navigation menus in both
+the TXT and HTM files; the HTM files have a linked navigation
+system on the side, and the TXT files have a navigation map at
+the bottom of the file. This is automatically generated when
+the documentation is rendered. 
+
+The structure of a PDML file is simple. Blocks begin with
+
+<code class="block">
+&lt;&lt;&lt;BLOCKNAME
+</code>
+<br />
+and end with
+
+<code class="block">
+BLOCKNAME&gt;&gt;&gt;
+</code>
+<br />
+There are two kinds of PDML files: standard documentation files
+(like this one) and class documentation files.
+
+Each standard file must have TITLE and CONTENT blocks, with an
+optional SHORT block. The TITLE block provides the title of the
+documentation page, as well as the title of the hyperlinks in
+the navigation, and the SHORT block is text that links to the
+page in the navigation. (In the TXT files, this is done as
+[SHORT] TITLE). If a SHORT block is not provided, it will
+default to the provided TITLE.
+
+The CONTENT block contains the documentation itself, and is
+what is displayed under the printed TITLE block on the page.
+More information about the CONTENT block is below.
+
+Similarly, a class documentation file has a CONTENT and an
+optional SHORT block, but uses a CLASS block instead of a TITLE
+block. A class documentation file can also have EXTENDS and
+IMPLMENTS blocks to indicate extended and implemented classes.
+Finally, a class documentation file can have STATIC_VARIABLES,
+VARIABLES, and FUNCTIONS blocks, with obvious contents. The
+display order for a class file's blocks is with CONTENT at the
+top, followed by STATIC VARIABLES, then VARIABLES, and finally,
+FUNCTIONS.
+<a id="contentblocks"></a>
+<h2>CONTENT Blocks</h2>
+CONTENT blocks form the core of the documentation -- within the
+CONTENT block is all the written documentation. By convention,
+&lt;h2&gt; blocks are used to indicate section headings, &lt;h3&gt;
+subheadings, and so on. &lt;hr /&gt; tags are also used as
+section dividers.
+
+Since the rendered documentation can be viewed in a browser,
+any and all HTML tags are valid to use. Thus, it will become
+necessary for you to use <var>&amp;</var> to indicate tags specifically in
+your documentation, such as for examples or using <var>&amp;lt;h2&amp;gt;</var>
+to tell others to use HTML entities. Most HTML tags will be
+stripped from the TXT version of the documentation.
+
+There are, however, special tags that are defined specifically
+for use in the documentation.
+
+<var>&lt;var&gt;</var> without any attributes is a tag block that makes
+the internal text monospaced.
+
+<var>&lt;code&gt;</var> will also monospace the contents of the tag, but
+will also render double quotes (") around the text in the TXT
+version of the documentation.
+
+<var>&lt;example&gt;</var> creates the green example boxes
+like the one below, which does not render in the TXT
+documentation:
+<example></example>
+<var>&lt;spaces&gt;</var> will convert all spaces within the block into
+<var>&amp;nbsp;</var> entities.
+
+<var>&lt;iftxt&gt;</var> will only render its contents in the TXT version
+of the documentation.
+
+Furthermore, the <var>code</var> tags can be given the classes <var>block</var> and
+<var>bordered</var> to change the display style or add a border to the tag
+block.
+
+Finally, for some mechanics. Each line rendered in the TXT
+documentation should not exceed 63 characters, unless it is
+necessary and important to the documentation to do so. Also,
+every pair of empty lines (<var>\n\n</var>) will be converted
+to (<var>&lt;br /&gt;&lt;br /&gt;</var>), and all additional
+whitespace will be condensed to a single space. Finally, the
+<var>&amp;amp;</var>, <var>&amp;lt;</var>, <var>&amp;amp;</var>, and <var>&amp;vellip;</var>
+entities will be converted to their appropriate characters in
+the TXT version (except that the vertical ellipses will be
+horizontal).
+<a id="classblocks"></a>
+<h2>Class Blocks</h2>
+The three class blocks, STATIC_VARIABLES, VARIABLES, and
+FUNCTIONS, have special utilies in the class documentation.
+
+First, any <var>&lt;var&gt;</var> tags will be boldfaced in these
+three tags, as long as it's in a class documentation file.
+
+Second, as part of convention, variables and functions should
+be listed in roughly alphabetical order, which must be done
+manually.
+
+Third, static and instance variables should not be referred to
+with the preceding dollar sign ($); only function parameters
+and variables used in the function, excluding class static and
+instance variables, should have the preceding dollar sign. This
+is mostly to prevent confusion between the class's variables
+and the local variables.
+
+Finally, variable and function identifiers should be separated
+from their descriptions with a double-dash (<var>--</var>), and any part
+of the description that goes on lines past the first should be
+hanging-indented. See the PDML source for classes like <var>__SITE</var>
+for further reference.
+CONTENT>>>

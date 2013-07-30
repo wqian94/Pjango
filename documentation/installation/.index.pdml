@@ -1,0 +1,12 @@
+<<<TITLE
+Installation Guide
+TITLE>>>
+
+<<<SHORT
+Installation
+SHORT>>>
+
+<<<CONTENT
+Installing and setting up Pjango consists of three standard
+steps: <a href="prereqs.htm">meeting system requirements</a>, <a href="unpacking.htm">unpacking</a>, and <a href="configuring.htm">configuring</a>.
+CONTENT>>>

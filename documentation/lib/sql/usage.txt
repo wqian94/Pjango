@@ -1,0 +1,89 @@
+Using SQL
+=========
+
+Each SQL database connection to be established should be listed
+in settings.php using the $SQL_DATABASES variable:
+
+Example:
+"
+$SQL_DATABASES=array(
+  array(
+    "host"=>"hostname",
+    "user"=>"username",
+    "passwd"=>"password",
+    "db"=>"databasename",
+    ),
+  );
+"
+
+They will then be connected in that order, with the last entry
+being the active one.
+
+To query, just call SQL::query(). The most basic query is just
+SQL::query($querystring);, which will send the input string as
+the query, raw; any string formatting characters will be left
+as-is (e.g. "%f" will be sent as "%f").
+
+However, if an argument array with at least one element is
+provided (SQL::query($querystring,$arguments);), then the input
+string will be treated as a formatted string, and the arguments
+will be provided as formatting arguments using PHP's vsprintf()
+function.
+
+Each query can also have escaping turned on or off for just
+that query by passing in true as the third argument (to enable
+escaping), or false (to disable escaping).
+
+To retrieve each database match in array form, call
+SQL::fetch(). This will use fetch the next match from the
+result resource provided, or from the internally stored result
+static variable if the parameter is null or not provided.
+
+At any time, the current connection and query result can be
+retrieved using the SQL::handle() and SQL::result() functions,
+respectively. This allows for custom SQL calls, if needed.
+
+==========
+NAVIGATION
+==========
+-[Home] Pjango Documentation (index.)
+---[Installation] Installation Guide (index.)
+---[Libraries] Built-in Libraries (index.)
+-----[Including Library Files] Including Library Files
+       (including.)
+-----[Core] Core (index.)
+-------[Core Functions] Core Functions (index.)
+---------[AbstractComponent] abstract class AbstractComponent
+           (AbstractComponent.)
+---------[RootComponent] class RootComponent (RootComponent.)
+---------[TagComponent] class TagComponent (TagComponent.)
+---------[Token] class Token (Token.)
+---------[TxtComponent] class TxtComponent (TxtComponent.)
+---------[ValComponent] class ValComponent (ValComponent.)
+---------[View] class View (View.)
+-------[Site Settings] Site Settings (index.)
+---------[__SITE Class and Object] class __SITE (__SITE.)
+-------[Tags, Filters, and Middleware] Built-in Tags, Filters,
+         and Middleware (index.)
+---------[Filters] Filters (index.)
+-----------[AbstractFilter] abstract class AbstractFilter
+             (AbstractFilter.)
+-----------[Built-in Filters] Built-in Filter Reference
+             (builtins.)
+-----------[Custom Filters] Custom Filters (customFilters.)
+---------[Middleware] Middleware (index.)
+-----------[AbstractMiddleware] abstract class
+             AbstractMiddleware (AbstractMiddleware.)
+-----------[Built-in Middleware] Built-in Middleware Reference
+             (builtins.)
+-----------[Custom Middleware] Custom Middleware
+             (customMiddleware.)
+---------[Tags] Tags (index.)
+-----------[AbstractTag] abstract class AbstractTag
+             (AbstractTag.)
+-----------[Built-in Tags] Built-in Tag Reference (builtins.)
+-----------[Custom Tags] Custom Tags (customTags.)
+-----[SQL] SQL (index.)
+-------[SQL Class] class SQL (SQL.)
+======>[SQL Usage] Using SQL (usage.)
+---[Writing Software] Development and Documentation (index.)

@@ -1,0 +1,20 @@
+Including Library Files
+=======================
+
+Including library files in the lib/ folder requires the use of
+an INCLUDE file. The include file contains a directive on each
+line, and each directive is a filename to include. Furthermore,
+the special directive * will include all files and
+subdirectories for that directory.
+
+==========
+NAVIGATION
+==========
+-[Home] Pjango Documentation (index.)
+---[Installation] Installation Guide (index.)
+---[Libraries] Built-in Libraries (index.)
+====>[Including Library Files] Including Library Files
+       (including.)
+-----[Core] Core (index.)
+-----[SQL] SQL (index.)
+---[Writing Software] Development and Documentation (index.)

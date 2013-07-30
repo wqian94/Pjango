@@ -1,0 +1,58 @@
+SQL
+===
+
+The SQL library is provided to make SQL querying more seamless
+and convenient. Most notable is the SQL class, used to help
+organize SQL handles, as well as to provide an easy transition
+from PHP's mysql_* to the newer mysqli_* API.
+
+However, any settings, such as hostnames, usernames, passwords,
+and database selections should be done in settings.php, using
+the $SQL_DATABASES variable.
+
+More information 
+
+==========
+NAVIGATION
+==========
+-[Home] Pjango Documentation (index.)
+---[Installation] Installation Guide (index.)
+---[Libraries] Built-in Libraries (index.)
+-----[Including Library Files] Including Library Files
+       (including.)
+-----[Core] Core (index.)
+-------[Core Functions] Core Functions (index.)
+---------[AbstractComponent] abstract class AbstractComponent
+           (AbstractComponent.)
+---------[RootComponent] class RootComponent (RootComponent.)
+---------[TagComponent] class TagComponent (TagComponent.)
+---------[Token] class Token (Token.)
+---------[TxtComponent] class TxtComponent (TxtComponent.)
+---------[ValComponent] class ValComponent (ValComponent.)
+---------[View] class View (View.)
+-------[Site Settings] Site Settings (index.)
+---------[__SITE Class and Object] class __SITE (__SITE.)
+-------[Tags, Filters, and Middleware] Built-in Tags, Filters,
+         and Middleware (index.)
+---------[Filters] Filters (index.)
+-----------[AbstractFilter] abstract class AbstractFilter
+             (AbstractFilter.)
+-----------[Built-in Filters] Built-in Filter Reference
+             (builtins.)
+-----------[Custom Filters] Custom Filters (customFilters.)
+---------[Middleware] Middleware (index.)
+-----------[AbstractMiddleware] abstract class
+             AbstractMiddleware (AbstractMiddleware.)
+-----------[Built-in Middleware] Built-in Middleware Reference
+             (builtins.)
+-----------[Custom Middleware] Custom Middleware
+             (customMiddleware.)
+---------[Tags] Tags (index.)
+-----------[AbstractTag] abstract class AbstractTag
+             (AbstractTag.)
+-----------[Built-in Tags] Built-in Tag Reference (builtins.)
+-----------[Custom Tags] Custom Tags (customTags.)
+====>[SQL] SQL (index.)
+-------[SQL Class] class SQL (SQL.)
+-------[SQL Usage] Using SQL (usage.)
+---[Writing Software] Development and Documentation (index.)

@@ -1,4 +1,12 @@
 <?php
+/*
+** index.php
+** 
+** Default, built-in index.php for the site. Acts as a switchboard for views.
+** 
+** Author: Luo Qian
+*/
+
 require_once("lib/libinclude.php");
 
 if(!preg_match(sprintf("/^%s([?].*)?$/",str_replace("/",'\/',"$__PATH[HTTP]")),$_SERVER["REQUEST_URI"])){

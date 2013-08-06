@@ -1,6 +1,10 @@
 <?php
 /*
+** tags.php
+** 
 ** Default, built-in tags.
+** 
+** Author: Luo Qian
 */
 
 //ajax tag

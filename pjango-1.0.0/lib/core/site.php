@@ -1,6 +1,10 @@
 <?php
 /*
+** site.php
+** 
 ** The __SITE class
+** 
+** Author: Luo Qian
 */
 
 class __SITE{

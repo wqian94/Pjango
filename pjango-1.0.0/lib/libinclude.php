@@ -1,9 +1,13 @@
 <?php
 /*
+** libinclude.php
+** 
 ** Includes library files.
 ** 
 ** Using rules found in each subdirectory's INCLUDE file,
 ** selectively includes PHP library files.
+** 
+** Author: Luo Qian
 */
 
 error_reporting(E_ALL);

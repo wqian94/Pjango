@@ -1,6 +1,10 @@
 <?php
 /*
+** main_css.php
+** 
 ** Sample CSS server file
+** 
+** Author: Luo Qian
 */
 
 header("Content-Type: text/css");

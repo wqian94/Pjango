@@ -1,6 +1,10 @@
 <?php
 /*
+** middleware.php
+** 
 ** Default middleware
+** 
+** Author: Luo Qian
 */
 
 class AutoTrimMiddleware extends AbstractMiddleware{

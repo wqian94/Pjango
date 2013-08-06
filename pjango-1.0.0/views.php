@@ -1,6 +1,10 @@
 <?php
 /*
+** views.php
+** 
 ** Used for handling views. Do not change the signature of this function!
+** 
+** Author: Luo Qian
 */
 
 function view($page){

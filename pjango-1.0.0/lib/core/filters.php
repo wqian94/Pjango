@@ -1,6 +1,10 @@
 <?php
 /*
+** filters.php
+** 
 ** Default, built-in tags.
+** 
+** Author: Luo Qian
 */
 
 //length add

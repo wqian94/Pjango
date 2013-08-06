@@ -1,10 +1,14 @@
 <?php
 /*
+** core.php
+** 
 ** Core library for loading views.
 ** 
 ** Contains classes View, Token, AbstractComponent and its
 ** child classes, as well as abstract classes for tags,
 ** filters, and middleware.
+** 
+** Author: Luo Qian
 */
 
 __SITE::set();

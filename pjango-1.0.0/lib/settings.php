@@ -1,5 +1,7 @@
 <?php
 /*
+** settings.php
+** 
 ** Settings for the site, using class __SITE, included from
 ** core/site.php.
 ** 
@@ -7,6 +9,8 @@
 ** when accessing from get()
 ** 
 ** Reset variables by __SITE::set()
+** 
+** Author: Luo Qian
 */
 
 require_once("core/site.php");

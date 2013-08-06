@@ -1,10 +1,14 @@
 <?php
 /*
+** internal_server_error.php
+** 
 ** Contains the INTERNAL_SERVER_ERROR class and its child
 ** classes.
 **
 ** INTERNAL_SERVER_ERROR classes kill the script upon
 ** construction, with a customized error message.
+** 
+** Author: Luo Qian
 */
 
 class INTERNAL_SERVER_ERROR{

@@ -1,10 +1,14 @@
 <?php
 /*
+** sql.php
+** 
 ** Built-in SQL library
 ** 
 ** Simplifies basic SQL operations by providing a simplified
 ** API for use. Selects between mysql_* and mysqli_* functions
 ** based on PHP version.
+** 
+** Author: Luo Qian
 */
 
 class SQL{

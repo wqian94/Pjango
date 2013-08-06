@@ -13,6 +13,8 @@
 ** Author: Luo Qian
 */
 
+define("PJANGO_VERSION","1.0.1"); //Pjango Version Definition
+
 require_once("core/site.php");
 
 __SITE::addVars(array(

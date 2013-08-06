@@ -20,7 +20,7 @@ if(!preg_match(sprintf("/^%s([?].*)?$/",str_replace("/",'\/',"$__PATH[HTTP]")),$
 	die();
 }
 
-$page="home";
+$page="index";
 if(count($_GET)>0){
 	$keys=array_keys($_GET);
 	if(strlen($keys[0])>0&&substr($keys[0],-1)=="?"){

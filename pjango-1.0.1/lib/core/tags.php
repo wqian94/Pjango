@@ -299,7 +299,7 @@ class __Tag_extends extends AbstractTag{
 			}
 		}
 		
-		if($vars["__TAG__INCLUDE__COMPONENTS__ONLY__"])
+		if(isset($vars["__TAG__INCLUDE__COMPONENTS__ONLY__"])&&$vars["__TAG__INCLUDE__COMPONENTS__ONLY__"])
 			return $root;
 		
 		$root->render($vars);

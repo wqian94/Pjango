@@ -13,3 +13,17 @@ There are both UNIX-plaintext and HTML documentation files.
 
 Licensing information can be found in the LICENSE included in
 this package.
+
+================================
+Version Updates
+================================
+
+v1.0.1
+======
+- Added PJANGO_VERSION constant
+- Changed from home.php to index.php as default page
+- Updated SQL library
+
+v1.0.0
+======
+- Pjango initial launch

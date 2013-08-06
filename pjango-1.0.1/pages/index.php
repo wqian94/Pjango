@@ -1,6 +1,6 @@
 <?php
 /*
-** home.php
+** index.php
 ** 
 ** Example of a view-switched PHP file.
 ** 

@@ -36,6 +36,9 @@ SQL_DATABASES
 	$htaccess=file_get_contents("$dir/.htaccess");
 	$htaccess=preg_replace('/\(WEBROOT\)/mi',"http://".$_SERVER["HTTP_HOST"].$_POST["path"]["http"],$htaccess);
 	file_put_contents("$dir/.htaccess",$htaccess);
+	`mv $dir/* .`;
+	`mv $dir/.* .`;
+	`rmdir $dir`;
 }
 else{
 	prtln(<<<HTML

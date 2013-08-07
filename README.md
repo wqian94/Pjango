@@ -18,6 +18,11 @@ this package.
 Version Updates
 ================================
 
+v1.0.4
+======
+- Fixed {% js_ext %} bug that prevented it from operating like
+  a normal self-closing tag.
+
 v1.0.3
 ======
 - Modified tags {% css_ext%} and {% js_ext %} slightly

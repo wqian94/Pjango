@@ -728,7 +728,7 @@ class __Tag_js_ext extends AbstractTag{
 		return "<script src=\"".join("",$cargs)."\"></script>";
 	}
 }
-__SITE::addTag("js_ext",new __Tag_js_ext);
+__SITE::addTag("js_ext",new __Tag_js_ext,true);
 
 //now tag
 class __Tag_now extends AbstractTag{

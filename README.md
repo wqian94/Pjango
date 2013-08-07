@@ -18,6 +18,10 @@ this package.
 Version Updates
 ================================
 
+v1.0.6
+======
+- Improved reliability of CSRF. Also cleans up old tokens.
+
 v1.0.5
 ======
 - Fixed {% js %} to close properly

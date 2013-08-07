@@ -243,6 +243,9 @@ relative path location of the parent template; if it is a
 variable, it will first be evaluated into a string literal that
 represents the relative locaation of the parent template.
 
+Note: This tag must be the first tag in the template file, or
+else inheritance is not guaranteed to work correctly.
+
 See Django's <a href="https://docs.djangoproject.com/en/dev/topics/templates/#template-inheritance" target="_new" rel="nofollow">Template Inheritance Documentation</a> for more
 information.
 <hr />

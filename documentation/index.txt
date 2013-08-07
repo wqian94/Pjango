@@ -31,7 +31,7 @@ Documentation is provided for the purposes of installation,
 incorporation, and modification of this project, as needed, and
 in accordance with the aforementioned license.
 
-Pjango Version 1.0.0
+Pjango Version 1.1.0
 
 ==========
 NAVIGATION

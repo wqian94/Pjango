@@ -18,6 +18,10 @@ this package.
 Version Updates
 ================================
 
+v1.1.0
+======
+- Significant bug fixes to {% extends %}
+
 v1.0.6
 ======
 - Improved reliability of CSRF. Also cleans up old tokens.

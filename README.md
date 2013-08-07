@@ -18,6 +18,12 @@ this package.
 Version Updates
 ================================
 
+v1.0.3
+======
+- Modified tags {% css_ext%} and {% js_ext %} slightly
+- Modified installationg index.php to give link to
+	documentation compiling script
+
 v1.0.2
 ======
 - Added SQLite3 support to SQL class

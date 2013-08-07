@@ -110,6 +110,9 @@ Using this tag will output something like:
 <link rel="stylesheet" type="text/css" href="(argument)" />
 "
 
+If more than one argument is provided, they will be
+concatenated together to form the final hyperlink.
+
 Note: This tag is not part of Django's built-in library.
 ===============================================================
 
@@ -438,6 +441,9 @@ The output will resemble:
 "
 <script src="(argument)"></script>
 "
+
+If more than one argument is provided, they will be
+concatenated together to form the final hyperlink.
 
 Note: This tag is not part of Django's built-in library.
 ===============================================================

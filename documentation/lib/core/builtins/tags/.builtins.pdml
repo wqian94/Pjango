@@ -158,6 +158,9 @@ Using this tag will output something like:
 &lt;link rel="stylesheet" type="text/css" href="(argument)" /&gt;
 </code>
 </example>
+If more than one argument is provided, they will be
+concatenated together to form the final hyperlink.
+
 Note: This tag is not part of Django's built-in library.
 <hr />
 <a id="cycle"></a><h2>cycle</h2>
@@ -457,6 +460,9 @@ The output will resemble:
 &lt;script src="(argument)"&gt;&lt;/script&gt;
 </code>
 </example>
+If more than one argument is provided, they will be
+concatenated together to form the final hyperlink.
+
 Note: This tag is not part of Django's built-in library.
 <hr />
 <a id="load"></a><h2>load</h2>

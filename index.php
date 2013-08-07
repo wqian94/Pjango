@@ -103,6 +103,11 @@ You will have an hour to complete your Pjango configuration.
 </div>
 <hr />
 <div class="objcenter center">
+<h3>Documentation Configuration</h3>
+<a href="documentation/documentationCompiler.php" style="color:blue;">Click here to compile the Pjango documentation for HTTP viewing!</a>
+</div>
+<hr />
+<div class="objcenter center">
 <input type="submit" value="Configure!" />
 </div>
 </form>

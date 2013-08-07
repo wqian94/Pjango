@@ -200,7 +200,17 @@ class __Tag_css_ext extends AbstractTag{
 		global $__DEBUG;
 		if(count($args)<1)
 			new TAG_ARGUMENT_ERROR($__DEBUG?$c:null);
-		return "<link rel=\"stylesheet\" type=\"text/css\" href=\"".$args[0]->render($vars)."\" />";
+		
+		//render arguments
+		$cargs=$c->getArgs();
+		foreach($cargs as $k=>$v){
+			$cvars=$vars;
+			if(!in_array($v->getName(),array_keys($vars)))
+				$cvars[$v->getName()]=$v->getName();
+			$cargs[$k]=$v->render($cvars);
+		}
+		
+		return "<link rel=\"stylesheet\" type=\"text/css\" href=\"".join("",$cargs)."\" />";
 	}
 }
 __SITE::addTag("css_ext",new __Tag_css_ext,true);
@@ -705,7 +715,17 @@ class __Tag_js_ext extends AbstractTag{
 		global $__DEBUG;
 		if(count($args)<1)
 			new TAG_ARGUMENT_ERROR($__DEBUG?$c:null);
-		return "<script src=\"".$args[0]->render($vars)."\"></script>";
+		
+		//render arguments
+		$cargs=$c->getArgs();
+		foreach($cargs as $k=>$v){
+			$cvars=$vars;
+			if(!in_array($v->getName(),array_keys($vars)))
+				$cvars[$v->getName()]=$v->getName();
+			$cargs[$k]=$v->render($cvars);
+		}
+		
+		return "<script src=\"".join("",$cargs)."\"></script>";
 	}
 }
 __SITE::addTag("js_ext",new __Tag_js_ext);

@@ -7,7 +7,7 @@
 ** Author: Luo Qian
 */
 
-//length add
+//add filter
 class __Filter_add extends AbstractFilter{
 	public static function render($args,$var,&$vars){
 		global $__DEBUG;

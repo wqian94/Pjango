@@ -27,7 +27,7 @@ class __SITE{
 			if(strlen($v)<1||substr($v,-1)!='/')
 				self::$vars["PATH"][$k].="/";
 		foreach(self::$vars["VIEWS"] as $k=>$v)
-			if(strlen($v)<strlen(self::$vars["PATH"]["SYSTEM"])||substr($v,0,strlen(self::$vars["PATH"]["SYSTEM"]))!=strlen($self::$vars["PATH"]["SYSTEM"]))
+			if(strlen($v)<strlen(self::$vars["PATH"]["SYSTEM"])||substr($v,0,strlen(self::$vars["PATH"]["SYSTEM"]))!=strlen(self::$vars["PATH"]["SYSTEM"]))
 				self::$vars["VIEWS"][$k]=self::$vars["PATH"]["SYSTEM"].$v; //absolute paths if not already
 	}
 	final static function get(){ //returns a copy of the internally stored system globals, without prepended __'s

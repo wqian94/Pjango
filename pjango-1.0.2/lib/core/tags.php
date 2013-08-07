@@ -362,6 +362,14 @@ class __Tag_for extends AbstractTag{
 			$cvars=$vars;
 			if(!in_array($v->getName(),array_keys($vars)))
 				$cvars[$v->getName()]=$v->getName();
+			if($k==2){
+				$ca=$cargs[2]->getName();
+				if(is_string($ca)&&strlen($ca)>strlen(".items")&&substr($ca,-strlen(".items"))==".items"){
+					$v=new ValComponent(new Token("{{ ".substr($ca,0,-strlen(".items"))." }}"));
+					$cargs[$k]=$v->render($cvars);
+					continue;
+				}
+			}
 			$cargs[$k]=$v->render($cvars);
 		}
 		
@@ -372,11 +380,11 @@ class __Tag_for extends AbstractTag{
 		$iterate=array();
 		if(is_array($cargs[2])){ //direct array, iterating over keys
 			$component_args=$c->getArgs();
-			$ca=$component_args[2];
+			$ca=$component_args[2]->getName();
 			if(is_string($ca)&&strlen($ca)>strlen(".items")&&substr($ca,-strlen(".items"))==".items"){ //array, iterating over both keys and values
 				$case=1;
 				$iterate=array();
-				foreach($vars[$cargs[2]] as $k=>$v)
+				foreach($cargs[2] as $k=>$v)
 					$iterate[]=array($k,$v);
 			}
 			else{
@@ -384,8 +392,10 @@ class __Tag_for extends AbstractTag{
 				$iterate=array_keys($cargs[2]); //default: iterating over keys of associative list
 				$list=true;
 				for($i=0;$i<count($iterate);$i++)
-					if($iterate[$i]!=$i)
+					if(!is_numeric($iterate[$i])||$iterate[$i]!=$i){
 						$list=false;
+						break;
+					}
 				if($list) //iterating over the values of a list
 					$iterate=array_values($cargs[2]);
 			}
@@ -405,11 +415,8 @@ class __Tag_for extends AbstractTag{
 			$ivar=array();
 			if($case==1)
 				$ivar=array($cargv[0]=>$iterate[$i][0],$cargv[1]=>$iterate[$i][1]);
-			else if(is_array($iterate)&&count($cargv)>1){
-				$ivar=array();
-				for($j=0;$j<count($cargv);$j++)
-					$ivar[$cargv[$j]]=isset($iterate[$i][$j])?$iterate[$i][$j]:null;
-			}
+			else if(is_array($iterate)&&count($cargv)>1) //key,value pairs
+				$ivar=array($cargv[0]=>$iterate[$i],$cargv[1]=>$cargs[2][$iterate[$i]]);
 			else
 				$ivar=array($cargv[0]=>$iterate[$i]);
 			$ivar["forloop"]=array(

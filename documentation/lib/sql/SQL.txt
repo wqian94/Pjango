@@ -16,17 +16,20 @@ toggling between escaping and not escaping the input.
  
 Static Variables
  
+private escape -- Initialized as true, is the boolean
+  indicator for whether to escape the input during querying.
+
 private handles -- Initialized as an empty array, used to store
   the handles of the SQL connections made.
 
 private latest -- Initialized as null, records the index of
   the currently-active connection handle.
 
-private escape -- Initialized as true, is the boolean
-  indicator for whether to escape the input during querying.
-
 private result -- Initialized as null, stores the result of
   the latest query, regardless of handle.
+
+private use_sqlite -- Initialized as false, is the flag for
+  determining whether to use SQLite3.
  
 Functions
  
@@ -35,7 +38,9 @@ public static connect($host,$user,$passwd,$db)
      with password $passwd, and selecting database $db and
      stores this connection in the handles array for use.
      Automatically sets latest to be the index of the new
-     connection, and returns the connection established.
+     connection, and returns the connection established. Will
+     use the self::open($db) function instead if the use_sqlite
+     flag is true.
 
 public static escape($escape=true)
   -- Sets the escape boolean indicator.
@@ -43,7 +48,9 @@ public static escape($escape=true)
 public static fetch($sqlresult=null)
   -- Uses *_fetch_array() to fetch the next result from the
      result resource. If the parameter is null, uses the static
-     variable result instead. The fetched array is returned.
+     variable result instead. If use_sqlite is set to true,
+     will use the SQLite3 library to fetch instead. The fetched
+     array is returned.
 
 public static handle()
   -- Returns the currently selected handle; that is,
@@ -51,6 +58,11 @@ public static handle()
 
 public static index()
   -- Returns the value of latest.
+
+public static open($db)
+  -- Like self::connect(), but opens a local SQLite3 database
+     instead. If the use_sqlite is not set to true, will throw
+     an error. Also sets latest and returns connection handle.
 
 public static query($query,$args=array(),$escape=null)
   -- Uses $query as a formatted string to include the arguments

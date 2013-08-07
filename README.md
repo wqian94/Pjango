@@ -18,8 +18,16 @@ this package.
 Version Updates
 ================================
 
+v1.0.2
+======
+- Added SQLite3 support to SQL class
+- Documentation updated for SQL class
+- Fixed bug in __SITE class that caused errors when refactoring
+- Tag {% for %} now behaves properly for key,value pairs
+
 v1.0.1
 ======
+- Fixed {% extends %} tag warning
 - Added PJANGO_VERSION constant
 - Changed from home.php to index.php as default page
 - Updated SQL library

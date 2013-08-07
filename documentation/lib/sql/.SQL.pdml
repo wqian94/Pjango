@@ -22,17 +22,20 @@ toggling between escaping and not escaping the input.
 CONTENT>>>
 
 <<<STATIC_VARIABLES
+<var>private escape</var> -- Initialized as <var>true</var>, is the boolean
+  indicator for whether to escape the input during querying.
+
 <var>private handles</var> -- Initialized as an empty array, used to store
   the handles of the SQL connections made.
 
 <var>private latest</var> -- Initialized as <var>null</var>, records the index of
   the currently-active connection handle.
 
-<var>private escape</var> -- Initialized as <var>true</var>, is the boolean
-  indicator for whether to escape the input during querying.
-
 <var>private result</var> -- Initialized as <var>null</var>, stores the result of
   the latest query, regardless of handle.
+
+<var>private use_sqlite</var> -- Initialized as <var>false</var>, is the flag for
+  determining whether to use SQLite3.
 STATIC_VARIABLES>>>
 
 <<<FUNCTIONS
@@ -41,7 +44,9 @@ STATIC_VARIABLES>>>
      with password <var>$passwd</var>, and selecting database <var>$db</var> and
      stores this connection in the <var>handles</var> array for use.
      Automatically sets <var>latest</var> to be the index of the new
-     connection, and returns the connection established.
+     connection, and returns the connection established. Will
+     use the <var>self::open($db)</var> function instead if the <var>use_sqlite</var>
+     flag is <var>true</var>.
 
 <var>public static escape($escape=true)</var>
   -- Sets the <var>escape</var> boolean indicator.
@@ -49,7 +54,9 @@ STATIC_VARIABLES>>>
 <var>public static fetch($sqlresult=null)</var>
   -- Uses <var>*_fetch_array()</var> to fetch the next result from the
      result resource. If the parameter is <var>null</var>, uses the static
-     variable <var>result</var> instead. The fetched array is returned.
+     variable <var>result</var> instead. If <var>use_sqlite</var> is set to <var>true</var>,
+     will use the SQLite3 library to fetch instead. The fetched
+     array is returned.
 
 <var>public static handle()</var>
   -- Returns the currently selected handle; that is,
@@ -57,6 +64,11 @@ STATIC_VARIABLES>>>
 
 <var>public static index()</var>
   -- Returns the value of <var>latest</var>.
+
+<var>public static open($db)</var>
+  -- Like <var>self::connect()</var>, but opens a local SQLite3 database
+     instead. If the <var>use_sqlite</var> is not set to <var>true</var>, will throw
+     an error. Also sets <var>latest</var> and returns connection handle.
 
 <var>public static query($query,$args=array(),$escape=null)</var>
   -- Uses <var>$query</var> as a formatted string to include the arguments

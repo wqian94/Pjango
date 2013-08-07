@@ -13,7 +13,7 @@
 ** Author: Luo Qian
 */
 
-define("PJANGO_VERSION","1.0.1"); //Pjango Version Definition
+define("PJANGO_VERSION","1.0.2"); //Pjango Version Definition
 
 require_once("core/site.php");
 
@@ -25,7 +25,7 @@ __SITE::addVars(array(
 	"DEBUG"=>true,
 	"CLR"=>array( //color scheme variables
 		),
-	"VIEWS"=>array( //diretories to search for views, relative to PATH[SYSTEM]
+	"VIEWS"=>array( //directories to search for views, relative to PATH[SYSTEM]
 		#"views/alpha", //production
 		"views/beta", //development
 		),

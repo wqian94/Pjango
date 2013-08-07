@@ -18,6 +18,10 @@ this package.
 Version Updates
 ================================
 
+v1.0.5
+======
+- Fixed {% js %} to close properly
+
 v1.0.4
 ======
 - Fixed {% js_ext %} bug that prevented it from operating like

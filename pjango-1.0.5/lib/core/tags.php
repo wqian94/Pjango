@@ -704,7 +704,7 @@ __SITE::addTag("include",new __Tag_include,true);
 //js tag
 class __Tag_js extends AbstractTag{
 	public static function render($args,$c,&$vars){
-		return "<script type=\"text/javascript\">/*<!--*/".$c->renderComponents($vars)."/*-->*/<script>";
+		return "<script type=\"text/javascript\">/*<!--*/".$c->renderComponents($vars)."/*-->*/</script>";
 	}
 }
 __SITE::addTag("js",new __Tag_js);

@@ -18,6 +18,11 @@ this package.
 Version Updates
 ================================
 
+v1.1.1
+======
+- Updated views.php to fall back to finding HTML templates and
+  rendering them if the PHP files doesn't exist
+
 v1.1.0
 ======
 - Significant bug fixes to {% extends %}

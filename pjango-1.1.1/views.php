@@ -12,6 +12,9 @@ function view($page){
 	foreach(__SITE::get() as $var=>$val)$$var=$val;unset($var,$val);
 	
 	//edit view function below
-	require("pages/$page.php");
+	if(!(@include("pages/$page.php"))){
+		$default_view=new View("$page.html");
+		$default_view->display();
+	}
 }
 ?>

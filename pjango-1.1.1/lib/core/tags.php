@@ -76,11 +76,10 @@ function AJAX(async){
 	this.post=function(url,args){
 			/*args must be an associate array*/
 			this.create();
-			argstr="&".concat(this.csrfkey,"=",this.csrftoken);
+			argstr="".concat(this.csrfkey,"=",this.csrftoken);
 			for(k in args){
 				argstr=argstr.concat("&",k,"=",args[k]);
 			}
-			argstr=argstr.substr(1);
 			this.dispatcher.open("POST",url,this.async);
 			this.dispatcher.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 			this.dispatcher.send(argstr);

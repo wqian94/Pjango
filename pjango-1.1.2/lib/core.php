@@ -297,7 +297,7 @@ class ValComponent extends AbstractComponent{
 			return "";
 		if(substr($this->token->getContent(),0,2)=="{#")
 			return "";
-		preg_match_all('/("(\\\\"|[^"])*")|(\'(\\\\\'|[^\'])*\')|([^.]+)/mi',$this->name,$name);
+		preg_match_all('/("(\\\\"|[^"])*")|(\'(\\\\\'|[^\'])*\')|([\d]*[.][\d]+)|([\d]+)|([^.]+)/mi',$this->name,$name);
 		$name=$name[0];
 		if(!count($name))
 			$name=array("\"\"","");

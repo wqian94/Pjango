@@ -669,23 +669,24 @@ Example:
 ==========
 NAVIGATION
 ==========
--[Home] Pjango Documentation (index.)
----[Installation] Installation Guide (index.)
----[Libraries] Built-in Libraries (index.)
+-[Home] Pjango Documentation (/)
+---[Installation] Installation Guide (installation/)
+---[Libraries] Built-in Libraries (lib/)
 -----[Including Library Files] Including Library Files
-       (including.)
------[Core] Core (index.)
--------[Core Functions] Core Functions (index.)
--------[Site Settings] Site Settings (index.)
+       (including)
+-----[Core] Core (core/)
+-------[Core Functions] Core Functions (core/)
+-------[Site Settings] Site Settings (site/)
 -------[Tags, Filters, and Middleware] Built-in Tags, Filters,
-         and Middleware (index.)
----------[Filters] Filters (index.)
+         and Middleware (builtins/)
+---------[Filters] Filters (filters/)
 -----------[AbstractFilter] abstract class AbstractFilter
-             (AbstractFilter.)
+             (AbstractFilter)
 ==========>[Built-in Filters] Built-in Filter Reference
-             (builtins.)
------------[Custom Filters] Custom Filters (customFilters.)
----------[Middleware] Middleware (index.)
----------[Tags] Tags (index.)
------[SQL] SQL (index.)
----[Writing Software] Development and Documentation (index.)
+             (builtins)
+-----------[Custom Filters] Custom Filters (customFilters)
+---------[Middleware] Middleware (middleware/)
+---------[Tags] Tags (tags/)
+-----[SQL] SQL (sql/)
+---[Writing Software] Development and Documentation
+     (developing/)

@@ -252,7 +252,7 @@ function prepareDocumentation($loc,&$tree){
 			$dirname=$dirname[2];
 		else
 			$dirname="";
-		$tree->file=substr($file,1,-4)=="index"?"$dirname/":substr($file,1,-4);
+		$tree->file=substr($file,1,-5)=="index"?"$dirname/":substr($file,1,-5);
 	}
 	if(is_dir($loc)){
 		$dir.="$file";

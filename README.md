@@ -18,6 +18,15 @@ this package.
 Version Updates
 ================================
 
+v1.1.2
+======
+- Fixed bug that sometimes wasn't correctly rendering decimals
+  as values
+- Updated core set, with slight adjustments to AJAX library for
+  link purposes
+- In documentation, fixed bug where "." was appearing in the
+  filenames of the text version "navigation"
+
 v1.1.1
 ======
 - Updated views.php to fall back to finding HTML templates and

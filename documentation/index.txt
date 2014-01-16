@@ -31,12 +31,13 @@ Documentation is provided for the purposes of installation,
 incorporation, and modification of this project, as needed, and
 in accordance with the aforementioned license.
 
-Pjango Version 1.1.0
+Pjango Version 1.1.2
 
 ==========
 NAVIGATION
 ==========
->[Home] Pjango Documentation (index.)
----[Installation] Installation Guide (index.)
----[Libraries] Built-in Libraries (index.)
----[Writing Software] Development and Documentation (index.)
+>[Home] Pjango Documentation (/)
+---[Installation] Installation Guide (installation/)
+---[Libraries] Built-in Libraries (lib/)
+---[Writing Software] Development and Documentation
+     (developing/)

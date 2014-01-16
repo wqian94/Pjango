@@ -13,10 +13,11 @@ script.
 ==========
 NAVIGATION
 ==========
--[Home] Pjango Documentation (index.)
----[Installation] Installation Guide (index.)
----[Libraries] Built-in Libraries (index.)
----[Writing Software] Development and Documentation (index.)
------[Documentation] Writing Documentation (writing.)
+-[Home] Pjango Documentation (/)
+---[Installation] Installation Guide (installation/)
+---[Libraries] Built-in Libraries (lib/)
+---[Writing Software] Development and Documentation
+     (developing/)
+-----[Documentation] Writing Documentation (writing)
 ====>[Generating Documentation] Generating Documentation
-       (generate.)
+       (generate)

@@ -10,11 +10,12 @@ core and sql.
 ==========
 NAVIGATION
 ==========
--[Home] Pjango Documentation (index.)
----[Installation] Installation Guide (index.)
-==>[Libraries] Built-in Libraries (index.)
+-[Home] Pjango Documentation (/)
+---[Installation] Installation Guide (installation/)
+==>[Libraries] Built-in Libraries (lib/)
 -----[Including Library Files] Including Library Files
-       (including.)
------[Core] Core (index.)
------[SQL] SQL (index.)
----[Writing Software] Development and Documentation (index.)
+       (including)
+-----[Core] Core (core/)
+-----[SQL] SQL (sql/)
+---[Writing Software] Development and Documentation
+     (developing/)

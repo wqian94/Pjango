@@ -76,11 +76,10 @@ function AJAX(async){
 	this.post=function(url,args){
 			/*args must be an associate array*/
 			this.create();
-			argstr="&".concat(this.csrfkey,"=",this.csrftoken);
+			argstr="".concat(this.csrfkey,"=",this.csrftoken);
 			for(k in args){
 				argstr=argstr.concat("&",k,"=",args[k]);
 			}
-			argstr=argstr.substr(1);
 			this.dispatcher.open("POST",url,this.async);
 			this.dispatcher.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 			this.dispatcher.send(argstr);
@@ -438,8 +437,8 @@ class __Tag_for extends AbstractTag{
 				"counter0"=>$i,
 				"revcounter"=>count($iterate)-$i,
 				"revcounter0"=>count($iterate)-$i-1,
-				"first"=>$i==0,
-				"last"=>$i==count($iterate)-1,
+				"first"=>($i==0)+0,
+				"last"=>($i==(count($iterate)-1))+0,
 				"parentloop"=>null,
 				);
 			if(isset($vars["__TAG__FOR__parentloop"]))
@@ -534,6 +533,7 @@ class __Tag_if extends AbstractTag{
 					$name=substr($v->getName(),0,strpos($v->getName(),"|")-1);
 					$cvars[$name]=$v->render($vars);
 				}
+				$name=join("\"][\"",explode(".",$name));
 				$cargs[$k]="\$cvars[\"$name\"]";
 			}
 			if($cargs[$k]=="not")

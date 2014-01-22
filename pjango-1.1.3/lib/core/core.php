@@ -363,8 +363,10 @@ class RootComponent extends AbstractComponent{ //purely for the purpose of tying
 	}
 	function render($args){
 		$rendered="";
-		foreach($this->components as $c)
+		foreach($this->components as $c){
+			$c->parent=$this;
 			$rendered.=$c->render($args);
+		}
 		$this->rendered=$rendered;
 	}
 	function getRendered(){

@@ -18,6 +18,10 @@ this package.
 Version Updates
 ================================
 
+v1.1.3
+======
+- Fixed RootComponent parent bug
+
 v1.1.2
 ======
 - Fixed bug that sometimes wasn't correctly rendering decimals

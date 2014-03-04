@@ -1,39 +1,9 @@
-class Token
-===========
+Pjango Built-in Constants
+=========================
 
-The Token class is the most primitive breakdown of the template
-file. The Token itself is a container of the raw text it
-represents (content) and the identified type of that raw
-content (type).
- 
-Static Variables
- 
-const TAG -- Has value "tag".
-
-const TXT -- Has valule "txt".
-
-const VAR -- Has value "var".
- 
-Instance Variables
- 
-private content -- The raw string that this Token
-  represents.
-
-private type -- The type of the content represented by
-  this Token. Takes on values of Token::TAG, Token::VAL,
-  and Token::TXT.
- 
-Functions
- 
-__construct($str)
-  -- Constructor function, takes in content string
-     and assigns the the appropriate type to type.
-
-getContent()
-  -- Returns the raw content string for this Token.
-
-getType()
-  -- Returns the type of this Token -- the value of type.
+There are some built-in variables and constants that you may be
+interested in. Since they constantly change, this will be
+updated from time to time, as new constants are added.
 
 ==========
 NAVIGATION
@@ -44,18 +14,10 @@ NAVIGATION
 -----[Including Library Files] Including Library Files
        (including)
 -----[Core] Core (core/)
--------[Constants] Pjango Built-in Constants (constants/)
+======>[Constants] Pjango Built-in Constants (constants/)
 ---------[MIME_CONTENT_TYPES] MIME_CONTENT_TYPES
            (MIME_CONTENT_TYPES)
 -------[Core Functions] Core Functions (core/)
----------[AbstractComponent] abstract class AbstractComponent
-           (AbstractComponent)
----------[RootComponent] class RootComponent (RootComponent)
----------[TagComponent] class TagComponent (TagComponent)
-========>[Token] class Token (Token)
----------[TxtComponent] class TxtComponent (TxtComponent)
----------[ValComponent] class ValComponent (ValComponent)
----------[View] class View (View)
 -------[Site Settings] Site Settings (site/)
 -------[Tags, Filters, and Middleware] Built-in Tags, Filters,
          and Middleware (builtins/)

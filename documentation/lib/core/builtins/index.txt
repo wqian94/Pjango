@@ -15,6 +15,7 @@ NAVIGATION
 -----[Including Library Files] Including Library Files
        (including)
 -----[Core] Core (core/)
+-------[Constants] Pjango Built-in Constants (constants/)
 -------[Core Functions] Core Functions (core/)
 -------[Site Settings] Site Settings (site/)
 ======>[Tags, Filters, and Middleware] Built-in Tags, Filters,

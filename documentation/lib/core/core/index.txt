@@ -17,6 +17,9 @@ NAVIGATION
 -----[Including Library Files] Including Library Files
        (including)
 -----[Core] Core (core/)
+-------[Constants] Pjango Built-in Constants (constants/)
+---------[MIME_CONTENT_TYPES] MIME_CONTENT_TYPES
+           (MIME_CONTENT_TYPES)
 ======>[Core Functions] Core Functions (core/)
 ---------[AbstractComponent] abstract class AbstractComponent
            (AbstractComponent)

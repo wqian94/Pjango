@@ -297,7 +297,7 @@ class ValComponent extends AbstractComponent{
 			return "";
 		if(substr($this->token->getContent(),0,2)=="{#")
 			return "";
-		preg_match_all('/("(\\\\"|[^"])*")|(\'(\\\\\'|[^\'])*\')|([\d]*[.][\d]+)|([\d]+)|([^.]+)/mi',$this->name,$name);
+		preg_match_all('/("(\\\\"|[^"])*")|(\'(\\\\\'|[^\'])*\')|((^|[\d]+)[.][\d]+)|([\d]+)|([^.]+)/mi',$this->name,$name);
 		$name=$name[0];
 		if(!count($name))
 			$name=array("\"\"","");
@@ -357,7 +357,7 @@ class TxtComponent extends AbstractComponent{
 class RootComponent extends AbstractComponent{ //purely for the purpose of tying up the entire component structure neatly
 	public $components;
 	private $rendered;
-	function __construct(){
+	function __construct($tok=null){
 		$this->components=array();
 		$rendered=null;
 	}
@@ -365,6 +365,10 @@ class RootComponent extends AbstractComponent{ //purely for the purpose of tying
 		$rendered="";
 		foreach($this->components as $c){
 			$c->parent=$this;
+			if(($c instanceof TagComponent)&&($c->getName()=="extends")){
+				$this->rendered=$c->render($args);
+				return;
+			}
 			$rendered.=$c->render($args);
 		}
 		$this->rendered=$rendered;

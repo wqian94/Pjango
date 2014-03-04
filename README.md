@@ -18,6 +18,14 @@ this package.
 Version Updates
 ================================
 
+v1.2.0
+======
+- Updated to deal with deprecated mime_content_type() function
+  in PHP5.3+; will re-update when a better replacement is found
+- Fixed bug where attempting to access a numerical key in an
+  array (e.g. {{ arr.3 }}) causes the ".3" to be rendered as a
+	float, rather than an index
+
 v1.1.3
 ======
 - Fixed RootComponent parent bug
@@ -57,7 +65,7 @@ v1.0.3
 ======
 - Modified tags {% css_ext%} and {% js_ext %} slightly
 - Modified installationg index.php to give link to
-	documentation compiling script
+  documentation compiling script
 
 v1.0.2
 ======

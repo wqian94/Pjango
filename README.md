@@ -24,7 +24,9 @@ v1.2.0
   in PHP5.3+; will re-update when a better replacement is found
 - Fixed bug where attempting to access a numerical key in an
   array (e.g. {{ arr.3 }}) causes the ".3" to be rendered as a
-	float, rather than an index
+  float, rather than an index
+- Fixed RootComponent multi-rendering on extends bug; very
+  hacky, expect a better solution soon
 
 v1.1.3
 ======
